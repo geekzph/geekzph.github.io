@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://geekzph.github.io/"/>
-  <updated>2015-10-11T16:27:28.000Z</updated>
+  <updated>2015-10-16T14:06:49.000Z</updated>
   <id>http://geekzph.github.io/</id>
   
   <author>
@@ -15,11 +15,137 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title><![CDATA[使用Hexo搭建个人博客]]></title>
-    <link href="http://geekzph.github.io/2015/10/11/%E4%BD%BF%E7%94%A8Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/"/>
-    <id>http://geekzph.github.io/2015/10/11/使用Hexo搭建个人博客/</id>
+    <title><![CDATA[Ubuntu下安装软件方法总结]]></title>
+    <link href="http://geekzph.github.io/2015/10/16/Ubuntu%E4%B8%8B%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/"/>
+    <id>http://geekzph.github.io/2015/10/16/Ubuntu下安装软件方法总结/</id>
+    <published>2015-10-16T13:31:07.000Z</published>
+    <updated>2015-10-16T14:06:49.000Z</updated>
+    <content type="html"><![CDATA[<ol>
+<li>sudo apt-get install packagename 命令<br>apt-get是ubuntu下一个强大的命令行工具。可以用它来安装新的软件包，升级现有的软件包，升级列表索引，甚至升级整个系统。</li>
+<li>deb格式文件是Ubuntu可安装类型，可以通过双击来直接安装。也可以使用dkpg命令来安装：dpkg -i xxx.deb ，参数i表示可安装的意思</li>
+<li>rpm格式是Red Hat Package Manager的简称。在Ubuntu不能通过双击来安装。一般使用alien命令把rpm转换为deb格式后在安装。首先要安装alien命令：sudo apt-get install alien ，然后用alien来转换：sudo alien xxx.rpm 之后会在同文件夹生成同名的deb文件，然后就可以安装了</li>
+<li>tar.gz和tar.bz2格式文件的安装。一般需要先解压：tar -zxvf FileName.tar.gz ，然后根据解压后的情况来安装。如果是源码的话，在解压后文件夹里会有confiure文件，源码文件的安装，首先执行：./configure  来进行配置，然后执行make来进行编译，最后执行make install 安装。make uninstall 来进行卸载。或者在配置时指定软件将要安装到目标路径：./configure –prefix=目录名，这样可以使用“rm -rf 软件目录名”命令来进行干净彻底的卸载。</li>
+<li><p>sh 格式文件。直接 ./xxx.sh 来进行安装。如果遇到这样情况</p>
+<p> Configuring the installer…<br> Searching for JVM on the system…<br> Extracting installation data…<br> Installer file /home/jiangkai/netbeans-7.2.1-ml-linux.sh seems to be corrupted<br>很可能是下载文件不完整，建议重新下载在安装。</p>
+</li>
+</ol>
+<p>常用的apt命令</p>
+<pre><code>apt-<span class="operator"><span class="keyword">cache</span> <span class="keyword">search</span> <span class="keyword">package</span> 搜索包
+apt-<span class="keyword">cache</span> <span class="keyword">show</span> <span class="keyword">package</span> 获取包的相关信息，如说明、大小、版本等
+sudo apt-<span class="keyword">get</span> <span class="keyword">install</span> <span class="keyword">package</span> 安装包
+sudo apt-<span class="keyword">get</span> <span class="keyword">install</span> <span class="keyword">package</span> - - reinstall 重新安装包
+sudo apt-<span class="keyword">get</span> -<span class="keyword">f</span> <span class="keyword">install</span> 修复安装<span class="string">"-f = - -fix-missing"</span>
+sudo apt-<span class="keyword">get</span> remove <span class="keyword">package</span> 删除包
+sudo apt-<span class="keyword">get</span> remove <span class="keyword">package</span> - - <span class="keyword">purge</span> 删除包，包括删除配置文件等
+sudo apt-<span class="keyword">get</span> <span class="keyword">update</span> 更新源
+sudo apt-<span class="keyword">get</span> <span class="keyword">upgrade</span> 更新已安装的包
+sudo apt-<span class="keyword">get</span> dist-<span class="keyword">upgrade</span> 升级系统
+sudo apt-<span class="keyword">get</span> dselect-<span class="keyword">upgrade</span> 使用 dselect 升级
+apt-<span class="keyword">cache</span> depends <span class="keyword">package</span> 了解使用依赖
+apt-<span class="keyword">cache</span> rdepends <span class="keyword">package</span> 是查看该包被哪些包依赖
+sudo apt-<span class="keyword">get</span> <span class="keyword">build</span>-dep <span class="keyword">package</span> 安装相关的编译环境
+apt-<span class="keyword">get</span> <span class="keyword">source</span> <span class="keyword">package</span> 下载该包的源代码
+sudo apt-<span class="keyword">get</span> clean &amp;&amp; sudo apt-<span class="keyword">get</span> autoclean 清理无用的包
+sudo apt-<span class="keyword">get</span> <span class="keyword">check</span> 检查是否有损坏的依赖</span>
+</code></pre>]]></content>
+    <summary type="html">
+    <![CDATA[<ol>
+<li>sudo apt-get install packagename 命令<br>apt-get是ubuntu下一个强大的命令行工具。可以用它来安装新的软件包，升级现有的软件包，升级列表索引，甚至升级整个系统。</li>
+<li>deb格式文件是Ubuntu可安装类]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Mac下Parallels Desktop安装Ubuntu无法全屏]]></title>
+    <link href="http://geekzph.github.io/2015/10/16/Mac%E4%B8%8BParallels-Desktop%E5%AE%89%E8%A3%85Ubuntu%E6%97%A0%E6%B3%95%E5%85%A8%E5%B1%8F/"/>
+    <id>http://geekzph.github.io/2015/10/16/Mac下Parallels-Desktop安装Ubuntu无法全屏/</id>
+    <published>2015-10-16T13:14:03.000Z</published>
+    <updated>2015-10-16T13:31:38.000Z</updated>
+    <content type="html"><![CDATA[<p>在Mac中，Parallels Desktop安装Ubuntu无法全屏问题出现，是由于在安装ubuntn是没有选择快速安装，因此在安装过程中就没有安装Parallels Tools。因此就会出现比如分辨率问题，或者终端窗口显示不正常等一些问题。解决这个问题方法就是安装Parallels Tools。可按照以下步骤安装：</p>
+<ol>
+<li>启动虚拟机。</li>
+<li>确保虚拟机的 CD/DVD 驱动指向默认的空驱动</li>
+<li>操作系统启动后请点击PD顶部菜单里的操作-&gt;安装Parallels Tools。<br>prl-tools-lin.iso 镜像文件将会加载至虚拟机的 CD/DVD 驱动器中。<br>如果上述方法没有加载成功，您也可手动连接并安装 Parallels Tools ISO 镜像文件。<br>右击虚拟机窗口的状态栏中的 CD/DVD 驱动图标并选择连接镜像。在弹出的 Finder 窗口中，进入硬盘文件夹（通常名为 “Macintosh HD”），选择 /Library/Parallels/Tools/ 文件夹（针对Parallels Desktop 7）或 /Applications/Parallels Desktop.app/Contents/Resources/Tools/ （针对 Parallels Desktop 8），选择prl-tools-lin.iso文件，然后点击打开连接至虚拟机。</li>
+<li>在您的 Ubuntu 虚拟机中启动 终端。</li>
+<li><p>在终端中找到光驱的位置：</p>
+<p> cd /media/username/Parallels\ Tools/</p>
+</li>
+</ol>
+<p>输入以下命令安装：</p>
+<pre><code>sudo ./<span class="keyword">install</span>
+</code></pre><p>根据 Parallels Tools 安装程序的提示完成安装。在 Parallels Tools 安装完成后，重新启动虚拟机。</p>
+<blockquote>
+<p>注意：1.上述命令中的Parallels\ Tools/的斜杠是因为路径名字包含空格，使用\作为转义字符代替空格<br> 2.不要在光驱中双击install-gui来安装，那样是无法安装的，必须在命令行下才可以安装</p>
+</blockquote>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>在Mac中，Parallels Desktop安装Ubuntu无法全屏问题出现，是由于在安装ubuntn是没有选择快速安装，因此在安装过程中就没有安装Parallels Tools。因此就会出现比如分辨率问题，或者终端窗口显示不正常等一些问题。解决这个问题方法就是安装Par]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[使用Hexo搭建个人博客（二）]]></title>
+    <link href="http://geekzph.github.io/2015/10/12/%E4%BD%BF%E7%94%A8Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
+    <id>http://geekzph.github.io/2015/10/12/使用Hexo搭建个人博客（二）/</id>
+    <published>2015-10-12T13:37:01.000Z</published>
+    <updated>2015-10-16T13:11:00.000Z</updated>
+    <content type="html"><![CDATA[<p>上篇文章介绍了如何通过Hexo来搭建博客，通过上篇文章相信搭建已经可以一个简单的博客了。但是这还不够，因为默认的博客还比较简陋，还需要进一步的去配置，使其更加完善。</p>
+<p>官方提供了很多主题供大家来选择</p>
+<ul>
+<li>Hexo Themes - <a href="http://hexo.io/themes" target="_blank" rel="external">http://hexo.io/themes</a></li>
+<li>NexT - <a href="http://theme-next.iissnan.com" target="_blank" rel="external">http://theme-next.iissnan.com</a></li>
+<li>jacman - <a href="https://github.com/wuchong/jacman" target="_blank" rel="external">https://github.com/wuchong/jacman</a></li>
+</ul>
+<p>本文以Next为例来介绍主题使用方法</p>
+<h4 id="下载NexT主题">下载NexT主题</h4><p>两种方法</p>
+<ol>
+<li><p>在终端窗口下，定位到 Hexo 站点目录下</p>
+<p> $ cd your-hexo-site</p>
+<p> $ git clone <a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="external">https://github.com/iissnan/hexo-theme-next</a>     themes/next</p>
+</li>
+<li><p>前往 NexT 版本 发布页面，选择你所需要的版本，下载 Download 下的 Source Code (zip) 到本地。解压所下载的压缩包至站点的 themes 目录下，并将 解压后的文件夹名称（hexo-theme-next-0.4.0）更改为 next</p>
+</li>
+</ol>
+<h4 id="启用NexT主题">启用NexT主题</h4><p>克隆/下载 完成后，打开 站点配置文件，找到 theme 字段，并将其值更改为 next。<br>运行 hexo s –debug，并访问 <a href="http://localhost:4000，确保站点正确运行。" target="_blank" rel="external">http://localhost:4000，确保站点正确运行。</a></p>
+<h4 id="主题设定">主题设定</h4><ol>
+<li><p>语言设置：编辑 站点配置文件，将 language 设置成你所需要的语言。<br>例如选用正体中文，则配置为：</p>
+<p> language: zh-hk</p>
+</li>
+</ol>
+<ol>
+<li><p>菜单设置：菜单配置在 主题配置文件 的 menu。 若你的站点运行在子目录中，请将链接前缀的 / 去掉。默认支持的菜单项有：</p>
+<p> menu:</p>
+<p> home: /</p>
+<p> archives: /archives</p>
+<p> about: /about</p>
+<p> categories: /categories</p>
+<p> tags: /tags</p>
+<p> commonweal: /404.html</p>
+</li>
+<li><p>侧栏设置：默认情况下，侧栏仅在文章页面（拥有目录列表）时才显示。可以通过修改 主题配置文件 中的 sidebar 字段来控制侧栏的行为。</p>
+</li>
+<li>头像设置：编辑 站点配置文件，新增字段 avatar， 值设置成头像的链接地址。</li>
+<li>作者名称：编辑 站点配置文件，设置 author 为你的昵称。</li>
+<li>站点描述设置：编辑 站点配置文件，设置 description 字段为你的站点描述。站点描述可以是你喜欢的一句签名:)</li>
+</ol>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>上篇文章介绍了如何通过Hexo来搭建博客，通过上篇文章相信搭建已经可以一个简单的博客了。但是这还不够，因为默认的博客还比较简陋，还需要进一步的去配置，使其更加完善。</p>
+<p>官方提供了很多主题供大家来选择</p>
+<ul>
+<li>Hexo Themes - <a h]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[使用Hexo搭建个人博客（一）]]></title>
+    <link href="http://geekzph.github.io/2015/10/11/%E4%BD%BF%E7%94%A8Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%80%EF%BC%89/"/>
+    <id>http://geekzph.github.io/2015/10/11/使用Hexo搭建个人博客（一）/</id>
     <published>2015-10-11T13:59:13.000Z</published>
-    <updated>2015-10-11T16:27:28.000Z</updated>
+    <updated>2015-10-12T13:35:08.000Z</updated>
     <content type="html"><![CDATA[<h3 id="Hexo是什么">Hexo是什么</h3><p>Hexo是一款基于Node.js的快速，简单并且强大的静态博客框架，可以用Markdown写博客然后Hexo会在几秒钟之内生成漂亮的静态网页。生成后的静态网页可以直接部署到到Github Pages上。本文将介绍mac下的具体搭建方法。</p>
 <h3 id="如何安装">如何安装</h3><h5 id="安装需求">安装需求</h5><p>安装Hexo非常简单。只需要先安装下面两个软件</p>
 <ul>
@@ -78,7 +204,10 @@ tags:
 comments: <span class="literal">false</span>   <span class="preprocessor">#不显示评论</span>
 </code></pre><p>执行下面命令,打开<a href="http://0.0.0.0:4000,本地查看效果" target="_blank" rel="external">http://0.0.0.0:4000,本地查看效果</a></p>
 <pre><code>$ hexo <span class="keyword">server</span>    <span class="preprocessor">#简写命令 hexo s</span>
-</code></pre><h3 id="部署到Github上">部署到Github上</h3><h4 id="生成Github_Pages">生成Github Pages</h4><ol>
+</code></pre><blockquote>
+<p>如果无法正常打开，请关闭各种代理或fq软件</p>
+</blockquote>
+<h3 id="部署到Github上">部署到Github上</h3><h4 id="生成Github_Pages">生成Github Pages</h4><ol>
 <li>登陆到Github</li>
 <li>在主页右上角创建New repository，Repository name必须为用户名yourname,github.io，比如我的用户名为geekzph，因此应设置为geekzph.github.io</li>
 <li>选为public，点击Create</li>
@@ -93,7 +222,7 @@ comments: <span class="literal">false</span>   <span class="preprocessor">#不�
 <pre><code><span class="variable">$ </span>hexo generate <span class="comment">#简写命令 hexo g    </span>
 </code></pre><p>执行下面命令部署</p>
 <pre><code><span class="variable">$ </span>hexo deploy    <span class="comment">#简写命令 hexo d</span>
-</code></pre><p>第一次执行此命令需要输入用户名和密码。<br>这时候就可以打开Github查看效果了。</p>
+</code></pre><p>输入Github的用户名和密码。<br>这时候就可以打开Github查看效果了。</p>
 <blockquote>
 <p>注意：执行 hexo server 等命令时需要先到博客所在目录才可以。mac下如出现编译错误需要从App Store安装Xcode。安装之后打开Xcode， Preferences -&gt; Download -&gt; Command Line Tools -&gt; Install 来安装命令行工具，或者使用命令 $ xcode–select –install。</p>
 </blockquote>

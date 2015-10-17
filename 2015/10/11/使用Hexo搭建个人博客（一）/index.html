@@ -47,8 +47,8 @@ Git
 $ brew install git
 安装N">
 <meta property="og:type" content="article">
-<meta property="og:title" content="使用Hexo搭建个人博客">
-<meta property="og:url" content="http://geekzph.github.io/2015/10/11/使用Hexo搭建个人博客/index.html">
+<meta property="og:title" content="使用Hexo搭建个人博客（一）">
+<meta property="og:url" content="http://geekzph.github.io/2015/10/11/使用Hexo搭建个人博客（一）/index.html">
 <meta property="og:site_name" content="geekzph's blog">
 <meta property="og:description" content="Hexo是什么Hexo是一款基于Node.js的快速，简单并且强大的静态博客框架，可以用Markdown写博客然后Hexo会在几秒钟之内生成漂亮的静态网页。生成后的静态网页可以直接部署到到Github Pages上。本文将介绍mac下的具体搭建方法。
 如何安装安装需求安装Hexo非常简单。只需要先安装下面两个软件
@@ -59,9 +59,9 @@ Git
 安装Git
 $ brew install git
 安装N">
-<meta property="og:updated_time" content="2015-10-11T16:27:28.000Z">
+<meta property="og:updated_time" content="2015-10-12T13:35:08.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="使用Hexo搭建个人博客">
+<meta name="twitter:title" content="使用Hexo搭建个人博客（一）">
 <meta name="twitter:description" content="Hexo是什么Hexo是一款基于Node.js的快速，简单并且强大的静态博客框架，可以用Markdown写博客然后Hexo会在几秒钟之内生成漂亮的静态网页。生成后的静态网页可以直接部署到到Github Pages上。本文将介绍mac下的具体搭建方法。
 如何安装安装需求安装Hexo非常简单。只需要先安装下面两个软件
 
@@ -80,7 +80,7 @@ $ brew install git
   };
 </script>
 
-    <title> 使用Hexo搭建个人博客 // geekzph's blog </title>
+    <title> 使用Hexo搭建个人博客（一） // geekzph's blog </title>
 </head>
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 <!--[if lte IE 8]>
@@ -210,7 +210,7 @@ $ brew install git
           
           
             
-              使用Hexo搭建个人博客
+              使用Hexo搭建个人博客（一）
             
           
         </h1>
@@ -241,8 +241,8 @@ $ brew install git
           
             <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/2015/10/11/使用Hexo搭建个人博客/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/11/使用Hexo搭建个人博客/" itemprop="commentsCount"></span>
+              <a href="/2015/10/11/使用Hexo搭建个人博客（一）/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/11/使用Hexo搭建个人博客（一）/" itemprop="commentsCount"></span>
               </a>
             </span>
           
@@ -314,7 +314,10 @@ tags:
 comments: <span class="literal">false</span>   <span class="preprocessor">#不显示评论</span>
 </code></pre><p>执行下面命令,打开<a href="http://0.0.0.0:4000,本地查看效果" target="_blank" rel="external">http://0.0.0.0:4000,本地查看效果</a></p>
 <pre><code>$ hexo <span class="keyword">server</span>    <span class="preprocessor">#简写命令 hexo s</span>
-</code></pre><h3 id="部署到Github上">部署到Github上</h3><h4 id="生成Github_Pages">生成Github Pages</h4><ol>
+</code></pre><blockquote>
+<p>如果无法正常打开，请关闭各种代理或fq软件</p>
+</blockquote>
+<h3 id="部署到Github上">部署到Github上</h3><h4 id="生成Github_Pages">生成Github Pages</h4><ol>
 <li>登陆到Github</li>
 <li>在主页右上角创建New repository，Repository name必须为用户名yourname,github.io，比如我的用户名为geekzph，因此应设置为geekzph.github.io</li>
 <li>选为public，点击Create</li>
@@ -329,7 +332,7 @@ comments: <span class="literal">false</span>   <span class="preprocessor">#不�
 <pre><code><span class="variable">$ </span>hexo generate <span class="comment">#简写命令 hexo g    </span>
 </code></pre><p>执行下面命令部署</p>
 <pre><code><span class="variable">$ </span>hexo deploy    <span class="comment">#简写命令 hexo d</span>
-</code></pre><p>第一次执行此命令需要输入用户名和密码。<br>这时候就可以打开Github查看效果了。</p>
+</code></pre><p>输入Github的用户名和密码。<br>这时候就可以打开Github查看效果了。</p>
 <blockquote>
 <p>注意：执行 hexo server 等命令时需要先到博客所在目录才可以。mac下如出现编译错误需要从App Store安装Xcode。安装之后打开Xcode， Preferences -&gt; Download -&gt; Command Line Tools -&gt; Install 来安装命令行工具，或者使用命令 $ xcode–select –install。</p>
 </blockquote>
@@ -349,6 +352,8 @@ comments: <span class="literal">false</span>   <span class="preprocessor">#不�
       
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/10/12/使用Hexo搭建个人博客（二）/" rel="prev">使用Hexo搭建个人博客（二）</a>
             
           </div>
 
@@ -380,8 +385,8 @@ comments: <span class="literal">false</span>   <span class="preprocessor">#不�
             
               <div class="comments" id="comments">
                 
-                  <div class="ds-thread" data-thread-key="2015/10/11/使用Hexo搭建个人博客/"
-                       data-title="使用Hexo搭建个人博客" data-url="http://geekzph.github.io/2015/10/11/使用Hexo搭建个人博客/">
+                  <div class="ds-thread" data-thread-key="2015/10/11/使用Hexo搭建个人博客（一）/"
+                       data-title="使用Hexo搭建个人博客（一）" data-url="http://geekzph.github.io/2015/10/11/使用Hexo搭建个人博客（一）/">
                   </div>
                 
               </div>
@@ -421,7 +426,7 @@ comments: <span class="literal">false</span>   <span class="preprocessor">#不�
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-count">6</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -548,7 +553,7 @@ comments: <span class="literal">false</span>   <span class="preprocessor">#不�
   
 
   <script type="text/javascript">
-    var duoshuoQuery = {short_name:"geekzph"};
+    var duoshuoQuery = {short_name:"geekzph123"};
     (function() {
       var ds = document.createElement('script');
       ds.type = 'text/javascript';ds.async = true;
