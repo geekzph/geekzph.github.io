@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://geekzph.github.io/"/>
-  <updated>2015-10-16T14:06:49.000Z</updated>
+  <updated>2015-10-19T10:26:48.000Z</updated>
   <id>http://geekzph.github.io/</id>
   
   <author>
@@ -19,12 +19,16 @@
     <link href="http://geekzph.github.io/2015/10/16/Ubuntu%E4%B8%8B%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/"/>
     <id>http://geekzph.github.io/2015/10/16/Ubuntu下安装软件方法总结/</id>
     <published>2015-10-16T13:31:07.000Z</published>
-    <updated>2015-10-16T14:06:49.000Z</updated>
+    <updated>2015-10-19T10:26:48.000Z</updated>
     <content type="html"><![CDATA[<ol>
-<li>sudo apt-get install packagename 命令<br>apt-get是ubuntu下一个强大的命令行工具。可以用它来安装新的软件包，升级现有的软件包，升级列表索引，甚至升级整个系统。</li>
+<li><p>sudo apt-get install packagename 命令<br>apt-get是ubuntu下一个强大的命令行工具。可以用它来安装新的软件包，升级现有的软件包，升级列表索引，甚至升级整个系统。如果出现could not get lock /var/lib/dpkg/lock -open等 ，类似这样的提示，是因为有另外一个程序正在运行，导致资源被锁不可用。而导致资源被锁的原因，可能是上次安装时没正常完成，而导致出现此状况。输入下面命令就行了。</p>
+<p> sudo rm /var/cache/apt/archives/lock</p>
+<p> sudo rm /var/lib/dpkg/lock</p>
+</li>
 <li>deb格式文件是Ubuntu可安装类型，可以通过双击来直接安装。也可以使用dkpg命令来安装：dpkg -i xxx.deb ，参数i表示可安装的意思</li>
 <li>rpm格式是Red Hat Package Manager的简称。在Ubuntu不能通过双击来安装。一般使用alien命令把rpm转换为deb格式后在安装。首先要安装alien命令：sudo apt-get install alien ，然后用alien来转换：sudo alien xxx.rpm 之后会在同文件夹生成同名的deb文件，然后就可以安装了</li>
 <li>tar.gz和tar.bz2格式文件的安装。一般需要先解压：tar -zxvf FileName.tar.gz ，然后根据解压后的情况来安装。如果是源码的话，在解压后文件夹里会有confiure文件，源码文件的安装，首先执行：./configure  来进行配置，然后执行make来进行编译，最后执行make install 安装。make uninstall 来进行卸载。或者在配置时指定软件将要安装到目标路径：./configure –prefix=目录名，这样可以使用“rm -rf 软件目录名”命令来进行干净彻底的卸载。</li>
+<li>run格式文件的安装。首先执行 chmod +x xxx.run来增加执行权限，然后执行sudo ./xxx.run就可以安装了</li>
 <li><p>sh 格式文件。直接 ./xxx.sh 来进行安装。如果遇到这样情况</p>
 <p> Configuring the installer…<br> Searching for JVM on the system…<br> Extracting installation data…<br> Installer file /home/jiangkai/netbeans-7.2.1-ml-linux.sh seems to be corrupted<br>很可能是下载文件不完整，建议重新下载在安装。</p>
 </li>
@@ -50,8 +54,7 @@ sudo apt-<span class="keyword">get</span> <span class="keyword">check</span> 检
 </code></pre>]]></content>
     <summary type="html">
     <![CDATA[<ol>
-<li>sudo apt-get install packagename 命令<br>apt-get是ubuntu下一个强大的命令行工具。可以用它来安装新的软件包，升级现有的软件包，升级列表索引，甚至升级整个系统。</li>
-<li>deb格式文件是Ubuntu可安装类]]>
+<li><p>sudo apt-get install packagename 命令<br>apt-get是ubuntu下一个强大的命令行工具。可以用它来安装新的软件包，升级现有的软件包，升级列表索引，甚至升级整个系统。如果出现could not get lock /v]]>
     </summary>
     
   </entry>
