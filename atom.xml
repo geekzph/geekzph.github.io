@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://geekzph.github.io/"/>
-  <updated>2015-10-19T10:26:48.000Z</updated>
+  <updated>2015-10-25T10:01:20.000Z</updated>
   <id>http://geekzph.github.io/</id>
   
   <author>
@@ -13,6 +13,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Python读取mat文件]]></title>
+    <link href="http://geekzph.github.io/2015/10/22/Python%E8%AF%BB%E5%8F%96mat%E6%96%87%E4%BB%B6/"/>
+    <id>http://geekzph.github.io/2015/10/22/Python读取mat文件/</id>
+    <published>2015-10-22T08:09:53.000Z</published>
+    <updated>2015-10-25T10:01:20.000Z</updated>
+    <content type="html"><![CDATA[<h4 id="读取mat文件">读取mat文件</h4><p>mat数据格式是Matlab的数据存储的标准格式。在Matlab中主要使用load()函数导入一个mat文件，使用save()函数保存一个mat文件。在Python中处理mat文件，需要导入scipy库，它的load函数可以加载mat文件。读取进来的数据是字典格式。</p>
+<pre><code><span class="import"><span class="keyword">import</span> scipy.io <span class="keyword">as</span> sio</span>
+<span class="typedef"><span class="keyword">data</span> = sio.loadmat<span class="container">('<span class="type">ECG_signal</span>.<span class="title">mat'</span>)</span>   # 加载mat文件</span>
+<span class="title">print</span> <span class="typedef"><span class="keyword">type</span><span class="container">(<span class="title">data</span>)</span>                       #查看数据格式</span>
+</code></pre><p>我的mat文件中有两个量，一个是ECG_1，另一个是Time_Adjusted，可以用print显示出来</p>
+<pre><code>#加载后的文件为字典,打印数据
+<span class="function"><span class="title">print</span><span class="params">(<span class="string">'\nThe vaulue of Time_Adjusted:'</span>)</span></span>
+<span class="function"><span class="title">print</span><span class="params">(data[<span class="string">'Time_Adjusted'</span>])</span></span>
+<span class="function"><span class="title">print</span><span class="params">(<span class="string">'\nThe vaulue of ECG:'</span>)</span><span class="title">r</span></span>
+<span class="function"><span class="title">print</span><span class="params">(data[<span class="string">'ECG_1'</span>])</span></span>
+</code></pre><p>还可以用matplotlib库，绘制图形。</p>
+<pre><code>#绘图
+plt.<span class="function"><span class="title">figure</span><span class="params">(<span class="number">1</span>)</span></span>
+plt.<span class="function"><span class="title">plot</span><span class="params">(data[<span class="string">'ECG_1'</span>])</span></span>
+plt.<span class="function"><span class="title">figure</span><span class="params">(<span class="number">2</span>)</span></span>
+plt.<span class="function"><span class="title">plot</span><span class="params">(data[<span class="string">'Time_Adjusted'</span>])</span></span>
+plt.<span class="function"><span class="title">show</span><span class="params">()</span></span>
+</code></pre>]]></content>
+    <summary type="html">
+    <![CDATA[<h4 id="读取mat文件">读取mat文件</h4><p>mat数据格式是Matlab的数据存储的标准格式。在Matlab中主要使用load()函数导入一个mat文件，使用save()函数保存一个mat文件。在Python中处理mat文件，需要导入scipy库，它的load]]>
+    </summary>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Ubuntu下安装软件方法总结]]></title>
