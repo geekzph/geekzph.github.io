@@ -1,0 +1,797 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+    
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.4"/>
+
+
+
+
+  <meta name="keywords" content="Hexo,next" />
+
+
+
+  <link rel="alternate" href="/atom.xml" title="geekzph's blog" type="application/atom+xml" />
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.4" />
+
+
+<meta name="description" content="一、 图像压缩原理图像分成 8*8 小块 –&amp;gt; DCT 变换 –&amp;gt;用量化表对其量化 –&amp;gt;编码生成压缩数据
+二、 具体压缩过程
+1、将原始图像分为 8 * 8 的小块, 每个 block 里有 64 个像素。
+
+
+2、 将图像中每个 8  8 的 block 进行 DCT 变换。8  8 的图象经过 DCT 变换后,其低频分量都集中在左上角,高频分量分布在右下角。由于该低频分量包含">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用Matlab实现JPEG压缩">
+<meta property="og:url" content="http://geekzph.github.io/2015/12/06/使用Matlab实现JPEG压缩/index.html">
+<meta property="og:site_name" content="geekzph's blog">
+<meta property="og:description" content="一、 图像压缩原理图像分成 8*8 小块 –&amp;gt; DCT 变换 –&amp;gt;用量化表对其量化 –&amp;gt;编码生成压缩数据
+二、 具体压缩过程
+1、将原始图像分为 8 * 8 的小块, 每个 block 里有 64 个像素。
+
+
+2、 将图像中每个 8  8 的 block 进行 DCT 变换。8  8 的图象经过 DCT 变换后,其低频分量都集中在左上角,高频分量分布在右下角。由于该低频分量包含">
+<meta property="og:image" content="http://ww4.sinaimg.cn/large/005FcoR8jw1eys83bfllhj30fk0bojs7.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/large/005FcoR8jw1eys82m17wfj30fk0bo755.jpg">
+<meta property="og:updated_time" content="2015-12-14T13:49:10.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用Matlab实现JPEG压缩">
+<meta name="twitter:description" content="一、 图像压缩原理图像分成 8*8 小块 –&amp;gt; DCT 变换 –&amp;gt;用量化表对其量化 –&amp;gt;编码生成压缩数据
+二、 具体压缩过程
+1、将原始图像分为 8 * 8 的小块, 每个 block 里有 64 个像素。
+
+
+2、 将图像中每个 8  8 的 block 进行 DCT 变换。8  8 的图象经过 DCT 变换后,其低频分量都集中在左上角,高频分量分布在右下角。由于该低频分量包含">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'hide'
+  };
+</script>
+
+    <title> 使用Matlab实现JPEG压缩 // geekzph's blog </title>
+</head>
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-68677980-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?56fa3e4b4505e908cb437148e8a8cb9e";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+<div class="container one-column page-post-detail">
+    <div class="headband"></div>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+        <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-logo"></i>
+      </span>
+      <span class="site-title">geekzph's blog</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-home"></i> <br />
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-archives"></i> <br />
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            <i class="menu-item-icon icon-categories"></i> <br />
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            <i class="menu-item-icon icon-tags"></i> <br />
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            <i class="menu-item-icon icon-about"></i> <br />
+            关于
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+        </div>
+    </header>
+
+    <main id="main" class="main">
+        <div class="main-inner">
+            <div id="content" class="content">
+                
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              使用Matlab实现JPEG压缩
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-12-06T21:07:50+08:00" content="2015-12-06">
+            2015-12-06
+          </time>
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2015/12/06/使用Matlab实现JPEG压缩/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/06/使用Matlab实现JPEG压缩/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h3 id="一、_图像压缩原理">一、 图像压缩原理</h3><p>图像分成 8*8 小块 –&gt; DCT 变换 –&gt;用量化表对其量化 –&gt;编码生成压缩数据</p>
+<h3 id="二、_具体压缩过程">二、 具体压缩过程</h3><ul>
+<li>1、将原始图像分为 8 * 8 的小块, 每个 block 里有 64 个像素。</li>
+</ul>
+<ul>
+<li><p>2、 将图像中每个 8 <em> 8 的 block 进行 DCT 变换。8 </em> 8 的图象经过 DCT 变换后,其低频分量都集中在左上角,高频分量分布在右下角。由于该低频分量包含了图象的主要信息(如亮度),而高频与之相比,就不那么重要了,所以我们可以忽略高频分量。</p>
+</li>
+<li><p>3、 利用量化表抑制高频变量。量化操作,就是将某一个值除以量化表中对应的值。由 于量化表左上角的值较小,右上角的值较大,这样就起到了保持低频分量,抑制高 频分量的目的。压缩时候将彩色图像的颜色空间由 RGB 转化为 YUV 格式。其中 Y 分量代表了亮度信息,UV 分量代表了色差信息。相比而言,Y 分量更重要一些。 我们可以对 Y 采用细量化,对 UV 采用粗量化,可进一步提高压缩比。所以量化表 通常有两张,一张是针对 Y 的标准亮度量化表;一张是针对 UV 的标准色彩量化表。</p>
+</li>
+</ul>
+<ul>
+<li>4、 经过量化之后右下角大部分数据变成了 0,左上角为非零数据。这时使用 Z 字型(如 图所示)的顺序来重新排列数据生成一个整数数组,这样 0 就位于数组都后端。找到数组最后一个非零元素,将其后的数据都舍弃,并加上结束标志。</li>
+</ul>
+<h3 id="三、_关键代码">三、 关键代码</h3><h4 id="Compress-m">Compress.m</h4><pre><code>function [comp_image_Y,comp_image_U,comp_image_V] =     Compress(orig_image)
+RGB=orig_image<span class="comment">;</span>
+%下面是对 RGB 三个分量进行分离 R=RGB(:,:,1)<span class="comment">;</span>
+G=RGB(:,:,2)<span class="comment">;</span>
+B=RGB(:,:,3)<span class="comment">;</span>
+%RGB-&gt;YUV Y=0.299*double(R)+0.587*double(G)    +0.114*double(B)<span class="comment">; [xm, xn] = size(Y);             U=-0.169*double(R)-0.3316*double(G)+0.5*double(B);     V=0.5*double(R)-0.4186*double(G)-0.0813*double(B);</span>
+%产生一个 8*8 的 DCT 变换举证 T=dctmtx(8)<span class="comment">;</span>
+%进行 DCT 变换 BY BU BV 是 double 类型
+BY=blkproc(Y,[8 8],'P1*x*P2',T,T')<span class="comment">; BU=blkproc(U,[8     8],'P1*x*P2',T,T'); BV=blkproc(V,[8 8],'P1*x*P2',T,T');     %低频分量量化表</span>
+a=[
+<span class="number">16 11 10 16</span> <span class="number">24 40 51 61</span><span class="comment">;</span>
+<span class="number">12 12 14 19</span> <span class="number">26 58 60 55</span><span class="comment">;</span>
+<span class="number">14 13 16 24</span> <span class="number">40 57 69 55</span><span class="comment">;</span>
+<span class="number">14 17 22 29</span> <span class="number">51 87 80 62</span><span class="comment">;</span>
+<span class="number">18 22 37 56</span> <span class="number">68 109 103 77</span><span class="comment">; </span>
+<span class="number">24 35 55 64</span> <span class="number">81 104 113 92</span><span class="comment">;                         49     64 78 87 103 121 120 101;                     72 92 95 98 112 100 103 99;</span>
+]<span class="comment">; %高频分量量化表</span>
+b=[<span class="number">17 18 24 47</span> <span class="number">99 99 99 99</span><span class="comment">; 18 21 26 66 99 99 99 99; 24     26 56 99 99 99 99 99; 47 66 99 99 99 99 99 99; 99 99 99     99 99 99 99 99; 99 99 99 99 99 99 99 99; 99 99 99 99 99     99 99 99; 99 99 99 99 99 99 99 99;];</span>
+%使用量化表对三个分量进行量化 BY2=blkproc(BY,[8     8],'round(x./P1)',a)<span class="comment">; BU2=blkproc(BU,[8 8],'round(x./    P1)',b); BV2=blkproc(BV,[8 8],'round(x./P1)',b);</span>
+%调用压缩函数 comp_image_Y=img2jpg(BY2,1)<span class="comment">;         comp_image_U=img2jpg(BU2,2);                     comp_image_V=img2jpg(BV2,3);</span>
+</code></pre><h4 id="img2jpg-m">img2jpg.m</h4><pre><code>unction <span class="matrix">[ y ]</span> = img2jpg( x,flag )
+<span class="matrix">[xm, xn]</span> = <span class="built_in">size</span>(x);
+<span class="comment">%z 字型读取数据顺序表</span>
+order = <span class="matrix">[<span class="number">1</span> <span class="number">9</span>  <span class="number">2</span>  <span class="number">3</span>  <span class="number">10</span> <span class="number">17</span> <span class="number">25</span> <span class="number">18</span> <span class="number">11</span> <span class="number">4</span>  <span class="number">5</span>  <span class="number">12</span> <span class="number">19</span> <span class="number">26</span> <span class="number">33</span>  ...
+    <span class="number">41</span> <span class="number">34</span> <span class="number">27</span> <span class="number">20</span> <span class="number">13</span> <span class="number">6</span>  <span class="number">7</span>  <span class="number">14</span> <span class="number">21</span> <span class="number">28</span> <span class="number">35</span> <span class="number">42</span> <span class="number">49</span> <span class="number">57</span> <span class="number">50</span>  ...
+    <span class="number">43</span> <span class="number">36</span> <span class="number">29</span> <span class="number">22</span> <span class="number">15</span> <span class="number">8</span>  <span class="number">16</span> <span class="number">23</span> <span class="number">30</span> <span class="number">37</span> <span class="number">44</span> <span class="number">51</span> <span class="number">58</span> <span class="number">59</span> <span class="number">52</span>  ...
+    <span class="number">45</span> <span class="number">38</span> <span class="number">31</span> <span class="number">24</span> <span class="number">32</span> <span class="number">39</span> <span class="number">46</span> <span class="number">53</span> <span class="number">60</span> <span class="number">61</span> <span class="number">54</span> <span class="number">47</span> <span class="number">40</span> <span class="number">48</span> <span class="number">55</span>  ...
+    <span class="number">62</span> <span class="number">63</span> <span class="number">56</span> <span class="number">64</span>]</span>;
+y = im2col(x, <span class="matrix">[<span class="number">8</span> <span class="number">8</span>]</span>, <span class="string">'distinct'</span>); xb = <span class="built_in">size</span>(y, <span class="number">2</span>);
+y = y(order, :);
+eob = max(y(:)) + <span class="number">1</span>;
+r = <span class="built_in">zeros</span>(<span class="built_in">numel</span>(y) + <span class="built_in">size</span>(y, <span class="number">2</span>), <span class="number">1</span>); count = <span class="number">0</span>;
+<span class="keyword">for</span> <span class="built_in">j</span> = <span class="number">1</span>:xb
+<span class="built_in">i</span> = max(<span class="built_in">find</span>(y(:, <span class="built_in">j</span>))); <span class="keyword">if</span> <span class="built_in">isempty</span>(<span class="built_in">i</span>)
+<span class="built_in">i</span> = <span class="number">0</span>; <span class="keyword">end</span>
+p = count + <span class="number">1</span>; q = p + <span class="built_in">i</span>;
+<span class="comment">% 将 8x8 的块转化为列</span>
+<span class="comment">% 分块数</span>
+<span class="comment">% 按照 order 的顺序排列数据</span>
+<span class="comment">% 设置块尾结束标志</span>
+<span class="comment">% 每次处理一个块</span>
+<span class="comment">% 找到最后一个非零元素</span>
+r(p:q) = <span class="matrix">[y(<span class="number">1</span>:i, j); eob]</span>;
+count = count + <span class="built_in">i</span> + <span class="number">1</span>; <span class="keyword">end</span>
+r((count + <span class="number">1</span>):<span class="keyword">end</span>) = <span class="matrix">[]</span>; <span class="matrix">[r1,r2]</span>=<span class="built_in">size</span>(r);
+y = struct; y.realsize = r1;
+y.<span class="built_in">size</span> = uint16(<span class="matrix">[xm xn]</span>); y.numblocks = uint16(xb);
+y.r = r;
+y.flag = flag;
+<span class="keyword">end</span>
+</code></pre><h4 id="jpg2img">jpg2img</h4><pre><code>function [ x ] = jpg2img( y ) %低频分量量化表
+a=[
+<span class="number">16 11 10 16</span> <span class="number">24 40 51 61</span><span class="comment">;</span>
+<span class="number">12 12 14 19</span> <span class="number">26 58 60 55</span><span class="comment">;</span>
+<span class="number">14 13 16 24</span> <span class="number">40 57 69 55</span><span class="comment">;</span>
+<span class="number">14 17 22 29</span> <span class="number">51 87 80 62</span><span class="comment">;</span>
+<span class="number">18 22 37 56</span> <span class="number">68 109 103 77</span><span class="comment">;                                     24 35 55 64 81 104 113 92;                                     49     64 78 87 103 121 120 101; </span>
+<span class="number">72 92 95 98</span> <span class="number">112 100 103 99</span><span class="comment">;</span>
+% 加入块结束标志 % 计数
+% 删除 r 中不需要的元素
+]<span class="comment">; %高频分量量化表</span>
+b=[<span class="number">17 18 24 47</span> <span class="number">99 99 99 99</span><span class="comment">;                                 18 21 26 66 99 99 99 99;                                     24 26 56 99 99 99 99 99;                                                 47 66 99 99 99 99 99 99; </span>
+<span class="number">99 99 99 99</span> <span class="number">99 99 99 99</span><span class="comment">;                                         99 99 99 99 99 99 99 99;                                         99 99 99 99 99 99 99 99;                                                     99 99 99 99 99 99 99 99;];</span>
+order=[<span class="number">19 2 3 101</span><span class="number">72518114 5</span> <span class="number">12192633</span> ... <span class="number">41342720136</span> <span class="number">7 142128354</span><span class="number">2495750</span> ... <span class="number">43362922158</span> <span class="number">162330374451</span>585952 ... <span class="number">453831243239</span><span class="number">46536061544</span><span class="number">7404855</span> ... <span class="number">62 63 56 64</span>]<span class="comment">;</span>
+rev = order<span class="comment">;</span>
+for k = 1:length(order)
+rev(k) = find(order == k)<span class="comment">; end</span>
+xb = double(y.numblocks)<span class="comment">; sz = double(y.size);</span>
+xn = sz(2)<span class="comment">;</span>
+xm = sz(1)<span class="comment">;</span>
+% 计算反序
+% 块的个数
+% 列数 % 行数
+% 压缩后的数据 % 返回块尾标志
+% 生成 64 * xb 的零矩阵
+% x 中的值放入 z 中,如果遇到 eob 就转入下一列
+x = y.r<span class="comment">;</span>
+eob = max(x(:))<span class="comment">;</span>
+z = zeros(64, xb)<span class="comment">; for j = 1:xb</span>
+k = 1<span class="comment">;</span>
+for i = 1:64
+if x(k) == eob
+k = k + 1<span class="comment">; else</span>
+z(i, j) = x(k)<span class="comment">;</span>
+k = k + 1<span class="comment">; end</span>
+end 
+
+end
+break<span class="comment">;</span>
+T=dctmtx(8)<span class="comment">;</span>
+z = z(rev, :)<span class="comment">;</span>
+x = col2im(z, [8 8], [xm xn], 'distinct')<span class="comment">; if y.flag==1</span>
+x = blkproc(x, [8 8], 'x .* P1', a)<span class="comment">;</span>
+else
+x = blkproc(x, [8 8], 'x .* P1', b)<span class="comment">;</span>
+end
+x = blkproc(x, [8 8], 'P1 * x * P2', T', T)<span class="comment">; </span>
+
+end
+</code></pre><h4 id="Decompress-m">Decompress.m</h4><pre><code>function reco_image =                         Decompress(orig_image_Y,orig_image_U,orig_image_V) %解压缩
+YI=jpg2img(orig_image_Y);
+UI=jpg2img(orig_image_U);
+VI=jpg2img(orig_image_V);
+%YUV 转为 RGB
+RI=YI-<span class="number">0.001</span>*UI+<span class="number">1.402</span>*VI; GI=YI-<span class="number">0.344</span>*UI-<span class="number">0.714</span>*VI; BI=YI+<span class="number">1.772</span>*UI+<span class="number">0.001</span>*VI;
+%经过 DCT 变换和量化后的 YUV 图像 RGBI=cat(<span class="number">3</span>,RI,GI,BI);
+RGBI=uint8(RGBI);
+reco_image = RGBI;
+</code></pre><h4 id="运行结果">运行结果</h4><p><img src="http://ww4.sinaimg.cn/large/005FcoR8jw1eys83bfllhj30fk0bojs7.jpg" alt=""><br><img src="http://ww4.sinaimg.cn/large/005FcoR8jw1eys82m17wfj30fk0bo755.jpg" alt=""></p>
+<p><a href="https://github.com/geekzph/JPEGCompression" target="_blank" rel="external">https://github.com/geekzph/JPEGCompression</a></p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/12/06/Matlab实现基于内容的图像检索系统/" rel="prev">Matlab实现基于内容的图像检索系统</a>
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/10/22/Python读取mat文件/" rel="next">Python读取mat文件</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+            </div>
+
+            
+
+            
+              <div class="comments" id="comments">
+                
+                  <div class="ds-thread" data-thread-key="2015/12/06/使用Matlab实现JPEG压缩/"
+                       data-title="使用Matlab实现JPEG压缩" data-url="http://geekzph.github.io/2015/12/06/使用Matlab实现JPEG压缩/">
+                  </div>
+                
+              </div>
+            
+        </div>
+
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/uploads/avatar.jpg" alt="geekzph" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">geekzph</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description"></p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">12</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="menu-item-icon icon-feed"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/geekzph" target="_blank">github</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/zphzph" target="_blank">twitter</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/your-user-name" target="_blank">weibo</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://douban.com/people/your-user-name" target="_blank">douban</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/your-user-name" target="_blank">zhihu</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、_图像压缩原理"><span class="nav-number">1.</span> <span class="nav-text">一、 图像压缩原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、_具体压缩过程"><span class="nav-number">2.</span> <span class="nav-text">二、 具体压缩过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、_关键代码"><span class="nav-number">3.</span> <span class="nav-text">三、 关键代码</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Compress-m"><span class="nav-number">3.1.</span> <span class="nav-text">Compress.m</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#img2jpg-m"><span class="nav-number">3.2.</span> <span class="nav-text">img2jpg.m</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#jpg2img"><span class="nav-number">3.3.</span> <span class="nav-text">jpg2img</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Decompress-m"><span class="nav-number">3.4.</span> <span class="nav-text">Decompress.m</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#运行结果"><span class="nav-number">3.5.</span> <span class="nav-text">运行结果</span></a></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+        <div class="footer-inner">
+            <div class="copyright" >
+  
+  &copy; &nbsp; 
+  <span itemprop="copyrightYear">2015</span>
+  <span class="with-love">
+    <i class="icon-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">geekzph</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+        </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+</div>
+
+<script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"geekzph123"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+  	<script src="/js/ua-parser.min.js"></script>
+  	<script src="/js/hook-duoshuo.js"></script>
+  
+
+    
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.4"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.4"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.4" id="motion.global"></script>
+
+
+
+  <script type="text/javascript" src="/js/search-toggle.js"></script>
+
+
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.4" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        if (CONFIG.sidebar === 'always') {
+            displaySidebar();
+        }
+    });
+</script>
+
+
+
+
+
+
+
+
+<!-- lazyload -->
+<script type="text/javascript" src="/js/lazyload.js"></script>
+<script type="text/javascript">
+    jQuery(function () {
+        jQuery("#posts img").lazyload({
+            placeholder: "/images/loading.gif",
+            effect: "fadeIn"
+        });
+    });
+</script>
+</body>
+</html>

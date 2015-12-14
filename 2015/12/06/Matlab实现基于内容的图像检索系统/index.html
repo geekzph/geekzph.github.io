@@ -37,19 +37,17 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.4" />
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+<meta name="description" content="一、 检索方案常见的图像特征有:颜色、纹理、形状、空间关系。此次检索的物体为汽车,汽车有比较明显的颜色特征,而在纹理特征方面也与其他物体也有一定的区别,因此本次实验选取了颜色和纹理做为两个检索特征。颜色特征是通 过颜色矩的方式来进行提取,颜色矩是一种简单有效的颜 色特征表示方法,有一阶矩(均值,mean)、二阶矩(方 差,viarance)和三阶矩(斜度,skewness)等,由于颜色信息 主要分">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://geekzph.github.io/2015/09/27/hello-world/index.html">
+<meta property="og:title" content="Matlab实现基于内容的图像检索系统">
+<meta property="og:url" content="http://geekzph.github.io/2015/12/06/Matlab实现基于内容的图像检索系统/index.html">
 <meta property="og:site_name" content="geekzph's blog">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
-<meta property="og:updated_time" content="2015-09-27T13:41:23.000Z">
+<meta property="og:description" content="一、 检索方案常见的图像特征有:颜色、纹理、形状、空间关系。此次检索的物体为汽车,汽车有比较明显的颜色特征,而在纹理特征方面也与其他物体也有一定的区别,因此本次实验选取了颜色和纹理做为两个检索特征。颜色特征是通 过颜色矩的方式来进行提取,颜色矩是一种简单有效的颜 色特征表示方法,有一阶矩(均值,mean)、二阶矩(方 差,viarance)和三阶矩(斜度,skewness)等,由于颜色信息 主要分">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/005FcoR8gw1eyziseb8n9j310e0kadkw.jpg">
+<meta property="og:updated_time" content="2015-12-14T13:47:43.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+<meta name="twitter:title" content="Matlab实现基于内容的图像检索系统">
+<meta name="twitter:description" content="一、 检索方案常见的图像特征有:颜色、纹理、形状、空间关系。此次检索的物体为汽车,汽车有比较明显的颜色特征,而在纹理特征方面也与其他物体也有一定的区别,因此本次实验选取了颜色和纹理做为两个检索特征。颜色特征是通 过颜色矩的方式来进行提取,颜色矩是一种简单有效的颜 色特征表示方法,有一阶矩(均值,mean)、二阶矩(方 差,viarance)和三阶矩(斜度,skewness)等,由于颜色信息 主要分">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -59,7 +57,7 @@ Quick">
   };
 </script>
 
-    <title> Hello World // geekzph's blog </title>
+    <title> Matlab实现基于内容的图像检索系统 // geekzph's blog </title>
 </head>
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 <!--[if lte IE 8]>
@@ -189,7 +187,7 @@ Quick">
           
           
             
-              Hello World
+              Matlab实现基于内容的图像检索系统
             
           
         </h1>
@@ -198,8 +196,8 @@ Quick">
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-09-27T21:41:23+08:00" content="2015-09-27">
-            2015-09-27
+          <time itemprop="dateCreated" datetime="2015-12-06T21:39:21+08:00" content="2015-12-06">
+            2015-12-06
           </time>
         </span>
 
@@ -209,8 +207,8 @@ Quick">
           
             <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/2015/09/27/hello-world/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2015/09/27/hello-world/" itemprop="commentsCount"></span>
+              <a href="/2015/12/06/Matlab实现基于内容的图像检索系统/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/06/Matlab实现基于内容的图像检索系统/" itemprop="commentsCount"></span>
               </a>
             </span>
           
@@ -224,15 +222,10 @@ Quick">
       
 
       
-        <span itemprop="articleBody"><p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+        <span itemprop="articleBody"><h3 id="一、_检索方案">一、 检索方案</h3><p>常见的图像特征有:颜色、纹理、形状、空间关系。<br>此次检索的物体为汽车,汽车有比较明显的颜色特征,而在纹理特征方面也与其他物体也有一定的区别,因此本次实验选取了颜色和纹理做为两个检索特征。颜色特征是通 过颜色矩的方式来进行提取,颜色矩是一种简单有效的颜 色特征表示方法,有一阶矩(均值,mean)、二阶矩(方 差,viarance)和三阶矩(斜度,skewness)等,由于颜色信息 主要分布于低阶矩中,所以用一阶矩,二阶矩和三阶矩足 以表达图像的颜色分布,颜色矩已证明可有效地表示图像中的颜色分布。纹理特征是通过LBP方法来进行提取。LBP 是一种用来描述图像局部纹理特征的算法;它的作用是进行特征提取,提取图像的局部纹理特征。原始的LBP算法定义为在 3 <em> 3的窗口内,以窗口中心像素为阈值,将相邻的8个像素的灰度值与其进行比较,若周围像素值大于中 心像素值,则该像素点的位置被标记为 1,否则为0。3 </em> 3领域内的8个点可产生 8bit 的无符号数,即得到该窗口的 LBP 值,并用这个值来反映该区域的纹理信息。</p>
+<h3 id="二、_实现方法">二、 实现方法</h3><p>共有100张图片,其中50张为汽车,另外50张为其他背景图片。首先要做的就是对这 100张图片建索引, 对这些图片分别提取纹理特征和颜色矩特征,并存mat文件。之后就可以进行检索了。纹理特征和颜色矩特征都是一维向量,检索的时候分别计算待检索图像和mat文件中颜色矩和纹理特征向量的欧几里得距离,并给予不同的权值。对这些距离进行升序排序,这样就得到了图像检索结果。</p>
+<h3 id="三、_运行结果">三、 运行结果</h3><p><img src="http://ww2.sinaimg.cn/large/005FcoR8gw1eyziseb8n9j310e0kadkw.jpg" alt=""></p>
+<p><a href="https://github.com/geekzph/CBIR" target="_blank" rel="external">https://github.com/geekzph/CBIR</a></p>
 </span>
       
     </div>
@@ -244,11 +237,13 @@ Quick">
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/10/10/google-s-new-logo/" rel="prev">google's new logo</a>
+              <a href="/2015/12/08/《与时间做朋友》读书笔记/" rel="prev">《与时间做朋友》读书笔记</a>
             
           </div>
 
           <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/12/06/使用Matlab实现JPEG压缩/" rel="next">使用Matlab实现JPEG压缩</a>
             
           </div>
         </div>
@@ -274,8 +269,8 @@ Quick">
             
               <div class="comments" id="comments">
                 
-                  <div class="ds-thread" data-thread-key="2015/09/27/hello-world/"
-                       data-title="Hello World" data-url="http://geekzph.github.io/2015/09/27/hello-world/">
+                  <div class="ds-thread" data-thread-key="2015/12/06/Matlab实现基于内容的图像检索系统/"
+                       data-title="Matlab实现基于内容的图像检索系统" data-url="http://geekzph.github.io/2015/12/06/Matlab实现基于内容的图像检索系统/">
                   </div>
                 
               </div>
@@ -386,7 +381,7 @@ Quick">
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick_Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create_a_new_post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run_server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate_static_files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy_to_remote_sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、_检索方案"><span class="nav-number">1.</span> <span class="nav-text">一、 检索方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、_实现方法"><span class="nav-number">2.</span> <span class="nav-text">二、 实现方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、_运行结果"><span class="nav-number">3.</span> <span class="nav-text">三、 运行结果</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
