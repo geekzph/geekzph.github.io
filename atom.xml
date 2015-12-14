@@ -75,7 +75,7 @@
     <link href="http://geekzph.github.io/2015/12/06/%E4%BD%BF%E7%94%A8Matlab%E5%AE%9E%E7%8E%B0JPEG%E5%8E%8B%E7%BC%A9/"/>
     <id>http://geekzph.github.io/2015/12/06/使用Matlab实现JPEG压缩/</id>
     <published>2015-12-06T13:07:50.000Z</published>
-    <updated>2015-12-14T13:49:10.000Z</updated>
+    <updated>2015-12-14T14:07:33.000Z</updated>
     <content type="html"><![CDATA[<h3 id="一、_图像压缩原理">一、 图像压缩原理</h3><p>图像分成 8*8 小块 –&gt; DCT 变换 –&gt;用量化表对其量化 –&gt;编码生成压缩数据</p>
 <h3 id="二、_具体压缩过程">二、 具体压缩过程</h3><ul>
 <li>1、将原始图像分为 8 * 8 的小块, 每个 block 里有 64 个像素。</li>
@@ -89,114 +89,158 @@
 <ul>
 <li>4、 经过量化之后右下角大部分数据变成了 0,左上角为非零数据。这时使用 Z 字型(如 图所示)的顺序来重新排列数据生成一个整数数组,这样 0 就位于数组都后端。找到数组最后一个非零元素,将其后的数据都舍弃,并加上结束标志。</li>
 </ul>
-<h3 id="三、_关键代码">三、 关键代码</h3><h4 id="Compress-m">Compress.m</h4><pre><code>function [comp_image_Y,comp_image_U,comp_image_V] =     Compress(orig_image)
+<h3 id="三、_关键代码">三、 关键代码</h3><h4 id="Compress-m">Compress.m</h4><pre><code>function [comp_image_Y,comp_image_U,comp_image_V] = Compress(orig_image)
 RGB=orig_image<span class="comment">;</span>
-%下面是对 RGB 三个分量进行分离 R=RGB(:,:,1)<span class="comment">;</span>
+%下面是对 RGB 三个分量进行分离 
+R=RGB(:,:,1)<span class="comment">;</span>
 G=RGB(:,:,2)<span class="comment">;</span>
 B=RGB(:,:,3)<span class="comment">;</span>
-%RGB-&gt;YUV Y=0.299*double(R)+0.587*double(G)    +0.114*double(B)<span class="comment">; [xm, xn] = size(Y);             U=-0.169*double(R)-0.3316*double(G)+0.5*double(B);     V=0.5*double(R)-0.4186*double(G)-0.0813*double(B);</span>
-%产生一个 8*8 的 DCT 变换举证 T=dctmtx(8)<span class="comment">;</span>
+%RGB-&gt;YUV Y=0.299*double(R)+0.587*double(G)    +0.114*double(B)<span class="comment">; </span>
+[xm, xn] = size(Y)<span class="comment">;             </span>
+U=-0.169*double(R)-0.3316*double(G)+0.5*double(B)<span class="comment">;     V=0.5*double(R)-0.4186*double(G)-0.0813*double(B);</span>
+%产生一个 8*8 的 DCT 变换举证 
+T=dctmtx(8)<span class="comment">;</span>
 %进行 DCT 变换 BY BU BV 是 double 类型
-BY=blkproc(Y,[8 8],'P1*x*P2',T,T')<span class="comment">; BU=blkproc(U,[8     8],'P1*x*P2',T,T'); BV=blkproc(V,[8 8],'P1*x*P2',T,T');     %低频分量量化表</span>
+BY=blkproc(Y,[8 8],'P1*x*P2',T,T')<span class="comment">; </span>
+BU=blkproc(U,[8 8],'P1*x*P2',T,T')<span class="comment">; </span>
+BV=blkproc(V,[8 8],'P1*x*P2',T,T')<span class="comment">;     %低频分量量化表</span>
 a=[
 <span class="number">16 11 10 16</span> <span class="number">24 40 51 61</span><span class="comment">;</span>
 <span class="number">12 12 14 19</span> <span class="number">26 58 60 55</span><span class="comment">;</span>
 <span class="number">14 13 16 24</span> <span class="number">40 57 69 55</span><span class="comment">;</span>
 <span class="number">14 17 22 29</span> <span class="number">51 87 80 62</span><span class="comment">;</span>
 <span class="number">18 22 37 56</span> <span class="number">68 109 103 77</span><span class="comment">; </span>
-<span class="number">24 35 55 64</span> <span class="number">81 104 113 92</span><span class="comment">;                         49     64 78 87 103 121 120 101;                     72 92 95 98 112 100 103 99;</span>
+<span class="number">24 35 55 64</span> <span class="number">81 104 113 92</span><span class="comment">;                         </span>
+49     <span class="number">64 78 87 103</span> <span class="number">121 120 101</span><span class="comment">;                     </span>
+<span class="number">72 92 95 98</span> <span class="number">112 100 103 99</span><span class="comment">;</span>
 ]<span class="comment">; %高频分量量化表</span>
-b=[<span class="number">17 18 24 47</span> <span class="number">99 99 99 99</span><span class="comment">; 18 21 26 66 99 99 99 99; 24     26 56 99 99 99 99 99; 47 66 99 99 99 99 99 99; 99 99 99     99 99 99 99 99; 99 99 99 99 99 99 99 99; 99 99 99 99 99     99 99 99; 99 99 99 99 99 99 99 99;];</span>
-%使用量化表对三个分量进行量化 BY2=blkproc(BY,[8     8],'round(x./P1)',a)<span class="comment">; BU2=blkproc(BU,[8 8],'round(x./    P1)',b); BV2=blkproc(BV,[8 8],'round(x./P1)',b);</span>
-%调用压缩函数 comp_image_Y=img2jpg(BY2,1)<span class="comment">;         comp_image_U=img2jpg(BU2,2);                     comp_image_V=img2jpg(BV2,3);</span>
-</code></pre><h4 id="img2jpg-m">img2jpg.m</h4><pre><code>unction <span class="matrix">[ y ]</span> = img2jpg( x,flag )
+b=[<span class="number">17 18 24 47</span> <span class="number">99 99 99 99</span><span class="comment">; </span>
+<span class="number">18 21 26 66</span> <span class="number">99 99 99 99</span><span class="comment">; </span>
+<span class="number">24 26 56 99</span> <span class="number">99 99 99 99</span><span class="comment">; </span>
+<span class="number">47 66 99 99</span> <span class="number">99 99 99 99</span><span class="comment">; </span>
+<span class="number">99 99 99 99</span> <span class="number">99 99 99 99</span><span class="comment">; </span>
+<span class="number">99 99 99 99</span> <span class="number">99 99 99 99</span><span class="comment">; </span>
+<span class="number">99 99 99 99</span> 99     99 99 99<span class="comment">; </span>
+<span class="number">99 99 99 99</span> <span class="number">99 99 99 99</span><span class="comment">;];</span>
+%使用量化表对三个分量进行量化 
+BY2=blkproc(BY,[8 8],'round(x./P1)',a)<span class="comment">; </span>
+BU2=blkproc(BU,[8 8],'round(x./    P1)',b)<span class="comment">; </span>
+BV2=blkproc(BV,[8 8],'round(x./P1)',b)<span class="comment">;</span>
+%调用压缩函数 
+comp_image_Y=img2jpg(BY2,1)<span class="comment">;         </span>
+comp_image_U=img2jpg(BU2,2)<span class="comment">;                     </span>
+comp_image_V=img2jpg(BV2,3)<span class="comment">;</span>
+</code></pre><h4 id="img2jpg-m">img2jpg.m</h4><pre><code><span class="function"><span class="keyword">function</span> <span class="params">[ y ]</span> = <span class="title">img2jpg</span><span class="params">( x,flag )</span></span>
 <span class="matrix">[xm, xn]</span> = <span class="built_in">size</span>(x);
-<span class="comment">%z 字型读取数据顺序表</span>
+<span class="comment">%z字型读取数据顺序表</span>
 order = <span class="matrix">[<span class="number">1</span> <span class="number">9</span>  <span class="number">2</span>  <span class="number">3</span>  <span class="number">10</span> <span class="number">17</span> <span class="number">25</span> <span class="number">18</span> <span class="number">11</span> <span class="number">4</span>  <span class="number">5</span>  <span class="number">12</span> <span class="number">19</span> <span class="number">26</span> <span class="number">33</span>  ...
     <span class="number">41</span> <span class="number">34</span> <span class="number">27</span> <span class="number">20</span> <span class="number">13</span> <span class="number">6</span>  <span class="number">7</span>  <span class="number">14</span> <span class="number">21</span> <span class="number">28</span> <span class="number">35</span> <span class="number">42</span> <span class="number">49</span> <span class="number">57</span> <span class="number">50</span>  ...
     <span class="number">43</span> <span class="number">36</span> <span class="number">29</span> <span class="number">22</span> <span class="number">15</span> <span class="number">8</span>  <span class="number">16</span> <span class="number">23</span> <span class="number">30</span> <span class="number">37</span> <span class="number">44</span> <span class="number">51</span> <span class="number">58</span> <span class="number">59</span> <span class="number">52</span>  ...
     <span class="number">45</span> <span class="number">38</span> <span class="number">31</span> <span class="number">24</span> <span class="number">32</span> <span class="number">39</span> <span class="number">46</span> <span class="number">53</span> <span class="number">60</span> <span class="number">61</span> <span class="number">54</span> <span class="number">47</span> <span class="number">40</span> <span class="number">48</span> <span class="number">55</span>  ...
     <span class="number">62</span> <span class="number">63</span> <span class="number">56</span> <span class="number">64</span>]</span>;
-y = im2col(x, <span class="matrix">[<span class="number">8</span> <span class="number">8</span>]</span>, <span class="string">'distinct'</span>); xb = <span class="built_in">size</span>(y, <span class="number">2</span>);
-y = y(order, :);
-eob = max(y(:)) + <span class="number">1</span>;
-r = <span class="built_in">zeros</span>(<span class="built_in">numel</span>(y) + <span class="built_in">size</span>(y, <span class="number">2</span>), <span class="number">1</span>); count = <span class="number">0</span>;
-<span class="keyword">for</span> <span class="built_in">j</span> = <span class="number">1</span>:xb
-<span class="built_in">i</span> = max(<span class="built_in">find</span>(y(:, <span class="built_in">j</span>))); <span class="keyword">if</span> <span class="built_in">isempty</span>(<span class="built_in">i</span>)
-<span class="built_in">i</span> = <span class="number">0</span>; <span class="keyword">end</span>
-p = count + <span class="number">1</span>; q = p + <span class="built_in">i</span>;
-<span class="comment">% 将 8x8 的块转化为列</span>
-<span class="comment">% 分块数</span>
-<span class="comment">% 按照 order 的顺序排列数据</span>
-<span class="comment">% 设置块尾结束标志</span>
-<span class="comment">% 每次处理一个块</span>
-<span class="comment">% 找到最后一个非零元素</span>
-r(p:q) = <span class="matrix">[y(<span class="number">1</span>:i, j); eob]</span>;
-count = count + <span class="built_in">i</span> + <span class="number">1</span>; <span class="keyword">end</span>
-r((count + <span class="number">1</span>):<span class="keyword">end</span>) = <span class="matrix">[]</span>; <span class="matrix">[r1,r2]</span>=<span class="built_in">size</span>(r);
-y = struct; y.realsize = r1;
-y.<span class="built_in">size</span> = uint16(<span class="matrix">[xm xn]</span>); y.numblocks = uint16(xb);
-y.r = r;
-y.flag = flag;
+
+y = im2col(x, <span class="matrix">[<span class="number">8</span> <span class="number">8</span>]</span>, <span class="string">'distinct'</span>);  <span class="comment">% 将8x8 的块转化为列</span>
+xb = <span class="built_in">size</span>(y, <span class="number">2</span>);                   <span class="comment">% 分块数</span>
+y = y(order, :);                   <span class="comment">% 按照order的顺序排列数据</span>
+
+eob = max(y(:)) + <span class="number">1</span>;               <span class="comment">% 设置块尾结束标志</span>
+r = <span class="built_in">zeros</span>(<span class="built_in">numel</span>(y) + <span class="built_in">size</span>(y, <span class="number">2</span>), <span class="number">1</span>);
+count = <span class="number">0</span>;
+<span class="keyword">for</span> <span class="built_in">j</span> = <span class="number">1</span>:xb                       <span class="comment">% 每次处理一个块</span>
+    <span class="built_in">i</span> = max(<span class="built_in">find</span>(y(:, <span class="built_in">j</span>)));         <span class="comment">% 找到最后一个非零元素</span>
+    <span class="keyword">if</span> <span class="built_in">isempty</span>(<span class="built_in">i</span>)                   
+          <span class="built_in">i</span> = <span class="number">0</span>;
+    <span class="keyword">end</span>
+    p = count + <span class="number">1</span>;
+    q = p + <span class="built_in">i</span>;
+    r(p:q) = <span class="matrix">[y(<span class="number">1</span>:i, j); eob]</span>;      <span class="comment">% 加入块结束标志</span>
+    count = count + <span class="built_in">i</span> + <span class="number">1</span>;          <span class="comment">% 计数</span>
 <span class="keyword">end</span>
-</code></pre><h4 id="jpg2img">jpg2img</h4><pre><code>function [ x ] = jpg2img( y ) %低频分量量化表
+
+r((count + <span class="number">1</span>):<span class="keyword">end</span>) = <span class="matrix">[]</span>;           <span class="comment">% 删除r 中不需要的元素</span>
+<span class="matrix">[r1,r2]</span>=<span class="built_in">size</span>(r);
+y           = struct;
+y.realsize = r1;
+y.<span class="built_in">size</span>      = uint16(<span class="matrix">[xm xn]</span>);
+y.numblocks = uint16(xb);
+y.r   = r;
+y.flag = flag;
+
+<span class="keyword">end</span>
+</code></pre><h4 id="jpg2img">jpg2img</h4><pre><code>function [ x ] = jpg2img( y )
+%低频分量量化表   
 a=[
-<span class="number">16 11 10 16</span> <span class="number">24 40 51 61</span><span class="comment">;</span>
-<span class="number">12 12 14 19</span> <span class="number">26 58 60 55</span><span class="comment">;</span>
-<span class="number">14 13 16 24</span> <span class="number">40 57 69 55</span><span class="comment">;</span>
-<span class="number">14 17 22 29</span> <span class="number">51 87 80 62</span><span class="comment">;</span>
-<span class="number">18 22 37 56</span> <span class="number">68 109 103 77</span><span class="comment">;                                     24 35 55 64 81 104 113 92;                                     49     64 78 87 103 121 120 101; </span>
+<span class="number">16 11 10 16</span> <span class="number">24 40 51 61</span><span class="comment">;  </span>
+<span class="number">12 12 14 19</span> <span class="number">26 58 60 55</span><span class="comment">;  </span>
+<span class="number">14 13 16 24</span> <span class="number">40 57 69 55</span><span class="comment">;  </span>
+<span class="number">14 17 22 29</span> <span class="number">51 87 80 62</span><span class="comment">;  </span>
+<span class="number">18 22 37 56</span> <span class="number">68 109 103 77</span><span class="comment">;  </span>
+<span class="number">24 35 55 64</span> <span class="number">81 104 113 92</span><span class="comment">;  </span>
+<span class="number">49 64 78 87</span> <span class="number">103 121 120 101</span><span class="comment">;  </span>
 <span class="number">72 92 95 98</span> <span class="number">112 100 103 99</span><span class="comment">;</span>
-% 加入块结束标志 % 计数
-% 删除 r 中不需要的元素
-]<span class="comment">; %高频分量量化表</span>
-b=[<span class="number">17 18 24 47</span> <span class="number">99 99 99 99</span><span class="comment">;                                 18 21 26 66 99 99 99 99;                                     24 26 56 99 99 99 99 99;                                                 47 66 99 99 99 99 99 99; </span>
-<span class="number">99 99 99 99</span> <span class="number">99 99 99 99</span><span class="comment">;                                         99 99 99 99 99 99 99 99;                                         99 99 99 99 99 99 99 99;                                                     99 99 99 99 99 99 99 99;];</span>
-order=[<span class="number">19 2 3 101</span><span class="number">72518114 5</span> <span class="number">12192633</span> ... <span class="number">41342720136</span> <span class="number">7 142128354</span><span class="number">2495750</span> ... <span class="number">43362922158</span> <span class="number">162330374451</span>585952 ... <span class="number">453831243239</span><span class="number">46536061544</span><span class="number">7404855</span> ... <span class="number">62 63 56 64</span>]<span class="comment">;</span>
-rev = order<span class="comment">;</span>
+
+]<span class="comment">;  </span>
+%高频分量量化表    
+b=[<span class="number">17 18 24 47</span> <span class="number">99 99 99 99</span><span class="comment">;  </span>
+ <span class="number">18 21 26 66</span> <span class="number">99 99 99 99</span><span class="comment">;  </span>
+ <span class="number">24 26 56 99</span> <span class="number">99 99 99 99</span><span class="comment">;  </span>
+ <span class="number">47 66 99 99</span> <span class="number">99 99 99 99</span><span class="comment">;  </span>
+ <span class="number">99 99 99 99</span> <span class="number">99 99 99 99</span><span class="comment">;  </span>
+ <span class="number">99 99 99 99</span> <span class="number">99 99 99 99</span><span class="comment">;  </span>
+ <span class="number">99 99 99 99</span> <span class="number">99 99 99 99</span><span class="comment">;  </span>
+ <span class="number">99 99 99 99</span> <span class="number">99 99 99 99</span><span class="comment">;]; </span>
+
+order = [1 9  2  3  <span class="number">10 17 25 18</span> 11 4  5  <span class="number">12 19 26 33</span>  ...
+    <span class="number">41 34 27 20</span> 13 6  7  <span class="number">14 21 28 35</span> <span class="number">42 49 57 50</span>  ...
+    <span class="number">43 36 29 22</span> 15 8  <span class="number">16 23 30 37</span> <span class="number">44 51 58 59</span> 52  ...
+    <span class="number">45 38 31 24</span> <span class="number">32 39 46 53</span> <span class="number">60 61 54 47</span> 40 48 55  ...
+    <span class="number">62 63 56 64</span>]<span class="comment">;</span>
+rev = order<span class="comment">;                          % 计算反序</span>
 for k = 1:length(order)
-rev(k) = find(order == k)<span class="comment">; end</span>
-xb = double(y.numblocks)<span class="comment">; sz = double(y.size);</span>
-xn = sz(2)<span class="comment">;</span>
-xm = sz(1)<span class="comment">;</span>
-% 计算反序
-% 块的个数
-% 列数 % 行数
-% 压缩后的数据 % 返回块尾标志
-% 生成 64 * xb 的零矩阵
-% x 中的值放入 z 中,如果遇到 eob 就转入下一列
-x = y.r<span class="comment">;</span>
-eob = max(x(:))<span class="comment">;</span>
-z = zeros(64, xb)<span class="comment">; for j = 1:xb</span>
-k = 1<span class="comment">;</span>
-for i = 1:64
-if x(k) == eob
-k = k + 1<span class="comment">; else</span>
-z(i, j) = x(k)<span class="comment">;</span>
-k = k + 1<span class="comment">; end</span>
-end 
-
+    rev(k) = find(order == k)<span class="comment">;</span>
 end
-break<span class="comment">;</span>
-T=dctmtx(8)<span class="comment">;</span>
-z = z(rev, :)<span class="comment">;</span>
-x = col2im(z, [8 8], [xm xn], 'distinct')<span class="comment">; if y.flag==1</span>
-x = blkproc(x, [8 8], 'x .* P1', a)<span class="comment">;</span>
+
+xb = double(y.numblocks)<span class="comment">;             % 块的个数</span>
+sz = double(y.size)<span class="comment">;</span>
+xn = sz(2)<span class="comment">;                           % 列数</span>
+xm = sz(1)<span class="comment">;                           % 行数</span>
+x = y.r<span class="comment">;                              % 压缩后的数据</span>
+eob = max(x(:))<span class="comment">;                      % 返回块尾标志</span>
+
+z = zeros(64, xb)<span class="comment">;   k = 1;           % 生成 64 * xb 的零矩阵</span>
+for j = 1:xb                          % x中的值放入z中，如果遇到eob就转入下一列
+    for i = 1:64                       
+          if x(k) == eob                  
+             k = k + 1<span class="comment">;   </span>
+             break<span class="comment">;          </span>
+          else
+             z(i, j) = x(k)<span class="comment">;</span>
+             k = k + 1<span class="comment">;</span>
+          end
+    end
+end
+T=dctmtx(8)<span class="comment">;                                   %产生一个8*8的DCT变换举证  </span>
+z = z(rev, :)<span class="comment">;                                 % 按order恢复之前排列</span>
+x = col2im(z, [8 8], [xm xn], 'distinct')<span class="comment">;     % 生成矩阵</span>
+if y.flag==1
+    x = blkproc(x, [8 8], 'x .* P1', a)<span class="comment">;       % 反量化，乘量化表的值</span>
 else
-x = blkproc(x, [8 8], 'x .* P1', b)<span class="comment">;</span>
+    x = blkproc(x, [8 8], 'x .* P1', b)<span class="comment">;</span>
 end
-x = blkproc(x, [8 8], 'P1 * x * P2', T', T)<span class="comment">; </span>
-
+x = blkproc(x, [8 8], 'P1 * x * P2', T', T)<span class="comment">;   % 反DCT变换</span>
 end
-</code></pre><h4 id="Decompress-m">Decompress.m</h4><pre><code>function reco_image =                         Decompress(orig_image_Y,orig_image_U,orig_image_V) %解压缩
-YI=jpg2img(orig_image_Y);
-UI=jpg2img(orig_image_U);
-VI=jpg2img(orig_image_V);
+</code></pre><h4 id="Decompress-m">Decompress.m</h4><pre><code>function reco_image = Decompress(orig_image_Y,orig_image_U,orig_image_V) %解压缩
+YI=jpg2img(orig_image_Y)<span class="comment">;</span>
+UI=jpg2img(orig_image_U)<span class="comment">;</span>
+VI=jpg2img(orig_image_V)<span class="comment">;</span>
 %YUV 转为 RGB
-RI=YI-<span class="number">0.001</span>*UI+<span class="number">1.402</span>*VI; GI=YI-<span class="number">0.344</span>*UI-<span class="number">0.714</span>*VI; BI=YI+<span class="number">1.772</span>*UI+<span class="number">0.001</span>*VI;
-%经过 DCT 变换和量化后的 YUV 图像 RGBI=cat(<span class="number">3</span>,RI,GI,BI);
-RGBI=uint8(RGBI);
-reco_image = RGBI;
+RI=YI-0.001*UI+1.402*VI<span class="comment">; </span>
+GI=YI-0.344*UI-0.714*VI<span class="comment">; </span>
+BI=YI+1.772*UI+0.001*VI<span class="comment">;</span>
+%经过 DCT 变换和量化后的 YUV 图像 
+RGBI=cat(3,RI,GI,BI)<span class="comment">;</span>
+RGBI=uint8(RGBI)<span class="comment">;</span>
+reco_image = RGBI<span class="comment">;</span>
 </code></pre><h4 id="运行结果">运行结果</h4><p><img src="http://ww4.sinaimg.cn/large/005FcoR8jw1eys83bfllhj30fk0bojs7.jpg" alt=""><br><img src="http://ww4.sinaimg.cn/large/005FcoR8jw1eys82m17wfj30fk0bo755.jpg" alt=""></p>
 <p><a href="https://github.com/geekzph/JPEGCompression" target="_blank" rel="external">https://github.com/geekzph/JPEGCompression</a></p>
 ]]></content>
