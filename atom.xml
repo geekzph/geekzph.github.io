@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://geekzph.github.io/"/>
-  <updated>2015-12-08T06:19:19.000Z</updated>
+  <updated>2015-12-15T06:36:20.000Z</updated>
   <id>http://geekzph.github.io/</id>
   
   <author>
@@ -13,6 +13,51 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[利用Python提取心跳节律信息]]></title>
+    <link href="http://geekzph.github.io/2015/12/15/%E5%88%A9%E7%94%A8Python%E6%8F%90%E5%8F%96%E5%BF%83%E8%B7%B3%E8%8A%82%E5%BE%8B%E4%BF%A1%E6%81%AF/"/>
+    <id>http://geekzph.github.io/2015/12/15/利用Python提取心跳节律信息/</id>
+    <published>2015-12-15T06:13:42.000Z</published>
+    <updated>2015-12-15T06:36:20.000Z</updated>
+    <content type="html"><![CDATA[<h4 id="心跳信息的提取分析：">心跳信息的提取分析：</h4><p>首先，ECG_signal.mat文件包含两组信息ECG_1和Time_Adjusted。其中ECG_1中存储的信息为心跳的数值，可以观察到大部分数值为负数。而波峰均为整数，可以通过计算两个相邻波峰之间的实际来得到周期，从而计算出心跳的次数。</p>
+<h4 id="具体实现过程：">具体实现过程：</h4><p>使用Pyhton第三方库scipy中的loadmat来加载mat文件，格式为字典，因为此文件包含两个量，所以就有两个键。以正负变化的点作为分割点对ECG_1进行划分，把正负改变点放在list中。计算list中每两个相邻索引之间最大值的下标，这些小标就是心跳图形波峰的下标。利用这些下标在Time_Adjusted中得到波峰的采样时间点，两个波峰之间的时间差就是一个周期的实际，把计算出的每个周期时间相加再除以个数，就获得了平均周期时间。所以一分钟心跳次数=60/周期</p>
+<h4 id="Python代码">Python代码</h4><pre><code><span class="comment"># -*- coding: UTF-8 –*-</span>
+<span class="keyword">import</span> scipy.io <span class="keyword">as</span> sio
+<span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt
+data = sio.loadmat(<span class="string">'ECG_signal.mat'</span>)   <span class="comment"># 加载mat文件</span>
+mylist=[]                     <span class="comment"># 存储正负改变点的索引</span>
+ecg=data[<span class="string">'ECG_1'</span>]             <span class="comment"># ecg为numpy.ndarray型</span>
+<span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,len(ecg)-<span class="number">1</span>,<span class="number">1</span>):
+    <span class="keyword">if</span> (ecg[i]&lt;<span class="number">0</span> <span class="keyword">and</span> ecg[i+<span class="number">1</span>]&gt;=<span class="number">0</span>) <span class="keyword">or</span> (ecg[i]&gt;=<span class="number">0</span> <span class="keyword">and</span> ecg[i+<span class="number">1</span>]&lt;<span class="number">0</span>):
+        mylist.append(i)
+
+maxindex=[]                   <span class="comment"># 最大值的索引</span>
+<span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,len(mylist),<span class="number">2</span>):
+    maxindex.append(mylist[i]+ecg[mylist[i]:mylist[i+<span class="number">1</span>]].argmax())
+
+period = []                            <span class="comment"># 分别存储各个周期</span>
+time_adjusted=data[<span class="string">'Time_Adjusted'</span>][<span class="number">0</span>] <span class="comment"># 取第0行的数据</span>
+count = <span class="number">0</span>                              <span class="comment"># 周期个数</span>
+<span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,len(maxindex)-<span class="number">1</span>,<span class="number">1</span>):
+    period.append(time_adjusted[maxindex[i+<span class="number">1</span>]]-time_adjusted[maxindex[i]]) <span class="comment"># 各个周期加入list中</span>
+count = count + <span class="number">1</span>
+
+<span class="keyword">print</span> <span class="string">'原始数据的周期个数:'</span>,count
+total_time=<span class="number">0</span>
+<span class="keyword">for</span> i <span class="keyword">in</span> period:
+    total_time= total_time+i
+<span class="keyword">print</span> <span class="string">'原始数据的周期为:'</span>,total_time/count
+<span class="keyword">print</span> ‘一分钟的心跳次数为:<span class="string">',60/(total_time/count)</span>
+</code></pre><h4 id="运行结果：">运行结果：</h4><p>原始数据的周期个数: 24</p>
+<p>原始数据的周期为: 0.813541666667</p>
+<p>一分钟的心跳次数为: 73.7516005122</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h4 id="心跳信息的提取分析：">心跳信息的提取分析：</h4><p>首先，ECG_signal.mat文件包含两组信息ECG_1和Time_Adjusted。其中ECG_1中存储的信息为心跳的数值，可以观察到大部分数值为负数。而波峰均为整数，可以通过计算两个相邻波峰之间的]]>
+    </summary>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Linux下Java环境变量的配置]]></title>
@@ -32,7 +77,7 @@
     <link href="http://geekzph.github.io/2015/12/08/Python%E7%88%AC%E8%99%AB%E7%88%AC%E5%8F%96%E5%8A%A8%E6%80%81%E7%BD%91%E9%A1%B5/"/>
     <id>http://geekzph.github.io/2015/12/08/Python爬虫爬取动态网页/</id>
     <published>2015-12-08T06:17:43.000Z</published>
-    <updated>2015-12-08T06:17:43.000Z</updated>
+    <updated>2015-12-15T06:26:49.000Z</updated>
     <content type="html"></content>
     <summary type="html">
     
