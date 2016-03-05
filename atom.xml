@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://geekzph.github.io/"/>
-  <updated>2015-12-15T06:36:20.000Z</updated>
+  <updated>2016-03-05T15:44:05.000Z</updated>
   <id>http://geekzph.github.io/</id>
   
   <author>
@@ -13,6 +13,262 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[搭建Git服务器]]></title>
+    <link href="http://geekzph.github.io/2016/03/05/%E6%90%AD%E5%BB%BAGit%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    <id>http://geekzph.github.io/2016/03/05/搭建Git服务器/</id>
+    <published>2016-03-05T15:42:53.000Z</published>
+    <updated>2016-03-05T15:44:05.000Z</updated>
+    <content type="html"><![CDATA[<h4 id="搭建Git服务器">搭建Git服务器</h4><h5 id="服务器端配置">服务器端配置</h5><p>1、安装Git</p>
+<pre><code>$ sudo apt-<span class="keyword">get</span> install git
+</code></pre><p>2、创建一个git用户，用来运行git服务。通过cd + 空格 转至当前用户目录为home/git。然后创建.ssh文件夹来存储SHH公钥。大多数 Git 服务器都会选择使用 SSH 公钥来进行授权。系统中的每个用户都必须提供一个公钥用于授权，没有的话就要生成一个。生成公钥的过程在所有操作系统上都差不多。</p>
+<pre><code><span class="variable">$ </span>sudo adduser git
+<span class="variable">$ </span>su git
+<span class="variable">$ </span>cd
+<span class="variable">$ </span>mkdir .ssh
+</code></pre><p>3、初始化Git仓库</p>
+<pre><code><span class="variable">$ </span>cd /opt/git
+<span class="variable">$ </span>mkdir project.git
+<span class="variable">$ </span>cd project.git
+<span class="variable">$ </span>git --bare init
+</code></pre><p>4、owner改为git,此命令在/opt/git下执行</p>
+<pre><code>$ sudo chown -R git:git project<span class="class">.git</span>    
+</code></pre><p>如果出现下述错误提示，就是因为权限没有修改，执行上述命令即可</p>
+<pre><code>remote: <span class="keyword">error</span>: insufficient permission <span class="keyword">for</span> adding an <span class="built_in">object</span> <span class="keyword">to</span> repository database ./objects
+remote: fatal: failed <span class="keyword">to</span> write <span class="built_in">object</span>
+<span class="keyword">error</span>: unpack failed: unpack-objects abnormal <span class="keyword">exit</span>
+</code></pre><p>5、测试本机SSH是否可以正常工作。如果出现connetction refused证明ssh不能使用，需要安装ssh</p>
+<pre><code><span class="variable">$ </span>ssh localhost
+</code></pre><p> 如果在客户端出现下述错误提示，则很有可能是ssh没有安装，或没有运行：</p>
+<pre><code>IOperation timed <span class="keyword">out</span> fatal: Could <span class="keyword">not</span> <span class="keyword">read</span> <span class="keyword">from</span> remote rIepository.
+git server Could <span class="keyword">not</span> <span class="keyword">read</span> <span class="keyword">from</span> remote repository.
+</code></pre><p>这时候就需要来安装ssh</p>
+<pre><code>$ sudo apt-get <span class="operator"><span class="keyword">install</span> openssh-<span class="keyword">server</span></span>
+</code></pre><p>然后确认sshserver是否启动了：</p>
+<pre><code><span class="keyword">ps</span> -<span class="keyword">e</span> |<span class="keyword">grep</span> ssh
+</code></pre><p>如果看到sshd那说明ssh-server已经启动了。<br>如果没有则可以这样启动：</p>
+<pre><code>sudo /etc/init.d/ssh <span class="built_in">start</span>
+</code></pre><h5 id="客服端配置">客服端配置</h5><p>1、生成ssh公钥<br>Mac和Linux可直接用下面命令生成。</p>
+<pre><code><span class="variable">$ </span>ssh-keygen
+</code></pre><p>数次回车之后就会在.ssh/id_rsa目录下生成公钥id_dsa.pub，将其复制到服务器上/tmp/id_rsa.pub，最后只要把它写入 authorized_keys 文件。</p>
+<pre><code>cat /tmp/id_rsa.pub <span class="prompt">&gt;&gt; </span>~<span class="regexp">/.ssh/authorized</span>_keys
+</code></pre><p>2、将本机已有仓库与远程仓库关联</p>
+<pre><code><span class="variable">$ </span>mkdir testgit
+<span class="variable">$ </span>cd testgit
+<span class="variable">$ </span>git init
+<span class="variable">$ </span>git add .
+<span class="variable">$ </span>git commit -m <span class="string">'initial commit'</span>
+<span class="variable">$ </span>git remote add origin git<span class="variable">@ip</span><span class="symbol">:/opt/git/project</span>.git
+<span class="variable">$ </span>git push origin master
+</code></pre><p>这样就实现了本地仓库与远程仓库的关联。</p>
+<p>3、在另一台电脑上可以clone下来</p>
+<pre><code><span class="variable">$ </span>git clone git<span class="variable">@ip</span><span class="symbol">:/opt/git/project</span>.git
+</code></pre><h6 id="Git_服务器演示">Git 服务器演示</h6><p>1、在Mac端将本地仓库test与服务器端project2仓库关联，test有readme.txt,git服务器的地址为10.211.55.3。</p>
+<p><img src="http://ww2.sinaimg.cn/large/005FcoR8gw1ezpzv0gc32j311w0wiajp.jpg" alt="image"></p>
+<p>readme.txt的内容为</p>
+<p><img src="http://ww3.sinaimg.cn/large/005FcoR8gw1ezpzvuxzxmj313y0t40u8.jpg" alt="image"></p>
+<p>2、在Mac客户端克隆仓库到用户目录<br><img src="http://ww2.sinaimg.cn/large/005FcoR8gw1ezpzxnogjvj311w0wijxv.jpg" alt="image"></p>
+<p>3、在Windows客服端克隆仓库</p>
+<p><img src="http://ww2.sinaimg.cn/large/005FcoR8gw1ezpzyll0fwj30jo0jwwlc.jpg" alt="image"><br>4、改变readme.txt的内容</p>
+<p><img src="http://ww3.sinaimg.cn/large/005FcoR8gw1ezpzzf5cc9j313y0t4gnl.jpg" alt="image"></p>
+<p>5、分别在Mac端和Windows端克隆</p>
+<p><img src="http://ww3.sinaimg.cn/large/005FcoR8gw1ezpzzf5cc9j313y0t4gnl.jpg" alt="image"></p>
+<p><img src="http://ww4.sinaimg.cn/large/005FcoR8gw1ezq017oofaj30ja0jowlq.jpg" alt="image"></p>
+<h5 id="关于Git整合代码统计的思考">关于Git整合代码统计的思考</h5><p>应该在Git源码中加入监视模块，一旦有新的代码改动push服务器，就会触发器代码统计功能。它会在发生改动的文件夹执行，以此完成此项功能。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h4 id="搭建Git服务器">搭建Git服务器</h4><h5 id="服务器端配置">服务器端配置</h5><p>1、安装Git</p>
+<pre><code>$ sudo apt-<span class="keyword">get</span> install git
+]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[代码行数统计]]></title>
+    <link href="http://geekzph.github.io/2016/03/05/%E4%BB%A3%E7%A0%81%E8%A1%8C%E6%95%B0%E7%BB%9F%E8%AE%A1/"/>
+    <id>http://geekzph.github.io/2016/03/05/代码行数统计/</id>
+    <published>2016-03-05T15:40:52.000Z</published>
+    <updated>2016-03-05T15:41:41.000Z</updated>
+    <content type="html"><![CDATA[<h4 id="一、_代码统计">一、    代码统计</h4><p>设计思想为各个类的方法名用正则表达式来匹配，每个放的行数使用栈来计算，类之间的引用关系使用图存储。通过判断是否存在环来判断是否有循环引用。使用Python实现。</p>
+<p>#####1、类SourceCodeANA</p>
+<p>方法：ListAllFile()</p>
+<pre><code><span class="function"><span class="keyword">def</span> <span class="title">ListAllFile</span><span class="params">()</span>:</span>    <span class="comment">#获取目录下所有的文件名及其路径</span>
+    path = os.getcwd()   <span class="comment">#获取当前目录</span>
+    file_paths=[]
+    new_path = os.path.join(path,<span class="string">'SLRtableProducer'</span>)
+    listfile=os.listdir(new_path)  <span class="comment">#列出目录下所有文件</span>
+    <span class="keyword">for</span> files <span class="keyword">in</span> listfile:
+        file_paths.append(os.path.join(new_path,files))
+    <span class="keyword">return</span> listfile,file_paths      <span class="comment">#返回所有文件名lisfile,返回所有文件的路径.</span>
+</code></pre><p>此方法的功能为遍历当前目录下多有的文件，返回其文件名和完整路径。</p>
+<p>1.2 方法：GetName（）</p>
+<pre><code><span class="function"><span class="keyword">def</span> <span class="title">GetName</span><span class="params">()</span>:</span>   <span class="comment">#生成类名字典</span>
+    listfile,file_paths = ListAllFile()
+    i = <span class="number">0</span>
+    class_dict={}
+    <span class="keyword">for</span> file_path <span class="keyword">in</span> file_paths:
+        dotposition=file_path.rfind(<span class="string">'.'</span>)
+        extention_name=file_path[dotposition+<span class="number">1</span>:]  <span class="comment">#获取扩展名</span>
+        class_name=file_path[file_path.rfind(<span class="string">'/'</span>)+<span class="number">1</span>:]  <span class="comment">#类名,带.h</span>
+        <span class="keyword">if</span> extention_name==<span class="string">'h'</span>:
+            class_dict[class_name]=i
+            newclass_dict[i]=class_name
+            i=i+<span class="number">1</span>
+    <span class="keyword">return</span> class_dict
+</code></pre><p>此方法的功能为为每个类名生成键值对，已方便生成类引用图时表示的方便。返回类似这样的结果：{‘AnalysisTable.h’: 0, ‘global.h’: 1, ‘LexerSupport.h’: 2}</p>
+<p>1.3 方法：CountLine(file_path)</p>
+<pre><code>def <span class="function"><span class="title">CountLine</span><span class="params">(file_path)</span></span>:  #计算方法行数,利用栈
+s=<span class="function"><span class="title">Stack</span><span class="params">()</span></span>
+f=<span class="function"><span class="title">open</span><span class="params">(file_path,<span class="string">'r'</span>)</span></span>
+i=<span class="number">0</span>
+function_line=[]
+<span class="keyword">for</span> lines <span class="keyword">in</span> f.<span class="function"><span class="title">readlines</span><span class="params">()</span></span>:
+    <span class="keyword">if</span> lines.<span class="function"><span class="title">find</span><span class="params">(<span class="string">'{'</span>)</span></span>!=-<span class="number">1</span>:
+        s.<span class="function"><span class="title">push</span><span class="params">(<span class="number">1</span>)</span></span>
+        i=<span class="number">0</span>
+    <span class="keyword">if</span> lines.<span class="function"><span class="title">find</span><span class="params">(<span class="string">'}'</span>)</span></span>!=-<span class="number">1</span>:
+        s.<span class="function"><span class="title">pop</span><span class="params">()</span></span>
+        <span class="keyword">if</span> s.<span class="function"><span class="title">isEmpty</span><span class="params">()</span></span>==True:
+            function_line.<span class="function"><span class="title">append</span><span class="params">(i)</span></span>
+            i=<span class="number">0</span>
+    i=i+<span class="number">1</span>
+return function_line
+</code></pre><p>此方法的作用统计每个方法的行数。每当遇到’{‘时就入栈，每当遇到’}’时就出栈，当栈为空是即为这个方法已经结束。每个从文件读入一行，每次读入累加器就会加1，以此来统计行数。</p>
+<p>1.4 方法：ShowReference(file_paths,class_dict)</p>
+<pre><code>def <span class="function"><span class="title">ShowReference</span><span class="params">(file_paths,class_dict)</span></span>:  #生成类之间引用关系的图,用邻接矩阵存储
+ReturnMat = numpy.<span class="function"><span class="title">zeros</span><span class="params">((<span class="number">21</span>,<span class="number">21</span>)</span></span>)
+<span class="keyword">for</span> file_path <span class="keyword">in</span> file_paths:
+    class_name=file_path[file_path.<span class="function"><span class="title">rfind</span><span class="params">(<span class="string">'/'</span>)</span></span>+<span class="number">1</span>:]
+    extention_name=file_path[file_path.<span class="function"><span class="title">rfind</span><span class="params">(<span class="string">'.'</span>)</span></span>+<span class="number">1</span>:]  #获取扩展名
+    <span class="keyword">if</span> os<span class="class">.path</span><span class="class">.exists</span>(file_path)==True and extention_name==<span class="string">'h'</span>:
+        f=<span class="function"><span class="title">open</span><span class="params">(file_path,<span class="string">'r'</span>)</span></span>
+        <span class="attribute">content</span>=f.<span class="function"><span class="title">read</span><span class="params">()</span></span>
+        result1=re.<span class="function"><span class="title">findall</span><span class="params">(<span class="string">'#include "(.*)"'</span>,content)</span></span>
+        result2=re.<span class="function"><span class="title">findall</span><span class="params">(<span class="string">'#include &lt;(.*)&gt;'</span>,content)</span></span>
+        result1.<span class="function"><span class="title">extend</span><span class="params">(result2)</span></span>
+
+        <span class="keyword">for</span> result <span class="keyword">in</span> result1:
+            <span class="keyword">if</span> class_dict.<span class="function"><span class="title">has_key</span><span class="params">(class_name)</span></span>==True and class_dict.<span class="function"><span class="title">has_key</span><span class="params">(result)</span></span>==True:
+                ReturnMat[class_dict[class_name]][class_dict[result]]=<span class="number">1</span>
+return ReturnMat
+</code></pre><p>此方法的作用为生成类之间引用关系的有向图,用邻接矩阵存储。</p>
+<p>1.5 方法：dfs（）</p>
+<pre><code><span class="function"><span class="keyword">def</span> <span class="title">dfs</span><span class="params">(i,m)</span>:</span>
+<span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">20</span>):
+    <span class="keyword">if</span> dataSet[i][j] == <span class="number">1</span>:
+
+        <span class="keyword">if</span> m!=i:
+            <span class="keyword">print</span> <span class="string">'----------------------------------------------------------'</span>
+        <span class="keyword">print</span> newclass_dict[i],<span class="string">'-&gt;'</span>,newclass_dict[j]
+        dataSet[i][j]=<span class="number">2</span>
+        m=j
+        dfs(j,m)
+</code></pre><p>这个方法是用来遍历类引用关系生成的邻接矩阵，采用了深度优先遍历，以此来得到类之间的引用关系。</p>
+<p>1.6 方法：Main（）</p>
+<pre><code>def <span class="function"><span class="title">Main</span><span class="params">()</span></span>:
+listfile,file_paths=<span class="function"><span class="title">ListAllFile</span><span class="params">()</span></span>
+class_count=<span class="number">0</span>      #类的个数
+class_name=<span class="string">''</span>      #类名
+function_lines=<span class="number">0</span>   #方法行数
+reclass=[]         #类中所引用的类
+
+<span class="keyword">for</span> file_path <span class="keyword">in</span> file_paths:  #遍历所有文件
+    isCycle=<span class="string">'否'</span>      #是否存在循环引用
+    reclass=[]       #引用类list
+    dotposition=file_path.<span class="function"><span class="title">rfind</span><span class="params">(<span class="string">'.'</span>)</span></span>
+    extention_name=file_path[dotposition+<span class="number">1</span>:]  #获取扩展名
+    <span class="keyword">if</span> extention_name==<span class="string">'h'</span>:  #利用.h文件计算方法个数
+        class_count=class_count+<span class="number">1</span>  #类的个数
+        class_name=file_path[file_path.<span class="function"><span class="title">rfind</span><span class="params">(<span class="string">'/'</span>)</span></span>+<span class="number">1</span>:dotposition]  #类名,不带<span class="class">.h</span>
+        class_name_h=class_name+<span class="string">'.h'</span>   #类名,带<span class="class">.h</span>
+        cppfile_path=file_path[:dotposition]+<span class="string">'.cpp'</span>    #.cpp文件路径
+
+        <span class="keyword">if</span> os<span class="class">.path</span><span class="class">.exists</span>(cppfile_path)==True:    #通过cpp计算方法行数
+            function_lines=<span class="function"><span class="title">CountLine</span><span class="params">(cppfile_path)</span></span>
+        <span class="keyword">else</span>:
+            function_lines=<span class="number">0</span>
+
+        #打开.h文件,统计方法
+        f=<span class="function"><span class="title">open</span><span class="params">(file_path,<span class="string">'r'</span>)</span></span>
+        <span class="attribute">content</span>=f.<span class="function"><span class="title">read</span><span class="params">()</span></span>
+        reresult=re.<span class="function"><span class="title">findall</span><span class="params">(<span class="string">'(\w*)\((.*?)\);| (\w*)\((.*?)\)\s*\{'</span>,content)</span></span>
+        function_count=<span class="function"><span class="title">len</span><span class="params">(reresult)</span></span>
+        <span class="keyword">for</span> name <span class="keyword">in</span> reresult:  #方法名加入list
+            <span class="keyword">if</span> name[<span class="number">0</span>]!=<span class="string">''</span>:
+                function_name.<span class="function"><span class="title">append</span><span class="params">(name[<span class="number">0</span>])</span></span>
+
+        print <span class="string">'类名为:'</span>,class_name
+        print <span class="string">'方法个数为:'</span>,function_count
+        <span class="keyword">if</span> function_count!=<span class="number">0</span> and function_lines!=<span class="number">0</span>:
+            print <span class="function"><span class="title">sorted</span><span class="params">(function_lines)</span></span>
+            print <span class="string">'最长的方法有:'</span>,<span class="function"><span class="title">sorted</span><span class="params">(function_lines)</span></span>[<span class="number">0</span>],<span class="string">'行'</span>
+            print <span class="string">'最短的方法有:'</span>,<span class="function"><span class="title">sorted</span><span class="params">(function_lines)</span></span>[<span class="function"><span class="title">len</span><span class="params">(function_lines)</span></span>-<span class="number">1</span>],<span class="string">'行'</span>
+            print <span class="string">'引用的类有:'</span>,reclass
+            print <span class="string">'是否存在循环引用:'</span>,isCycle
+            print <span class="string">'------------------------------'</span>
+        <span class="keyword">else</span>:
+            print <span class="string">'------------------------------'</span>
+</code></pre><p>此函数为主函数，主要为获取各个函数名，以及输出最后的结果。</p>
+<p>#####2、类Stack</p>
+<pre><code><span class="class"><span class="keyword">class</span> <span class="title">Stack</span>:</span>
+<span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,size = <span class="number">16</span>)</span>:</span>
+    self.stack = []
+    self.size = size
+    self.top = -<span class="number">1</span>
+<span class="function"><span class="keyword">def</span> <span class="title">setSize</span><span class="params">(self, size)</span>:</span>
+    self.size = size
+<span class="function"><span class="keyword">def</span> <span class="title">isEmpty</span><span class="params">(self)</span>:</span>
+    <span class="keyword">if</span> self.top == -<span class="number">1</span>:
+        <span class="keyword">return</span> <span class="keyword">True</span>
+    <span class="keyword">else</span>:
+        <span class="keyword">return</span> <span class="keyword">False</span>
+<span class="function"><span class="keyword">def</span> <span class="title">isFull</span><span class="params">(self)</span>:</span>
+    <span class="keyword">if</span> self.top +<span class="number">1</span> == self.size:
+        <span class="keyword">return</span> <span class="keyword">True</span>
+    <span class="keyword">else</span>:
+        <span class="keyword">return</span> <span class="keyword">False</span>
+<span class="function"><span class="keyword">def</span> <span class="title">top</span><span class="params">(self)</span>:</span>
+    <span class="keyword">if</span> self.isEmpty():
+        <span class="keyword">raise</span> Exception(<span class="string">"StackIsEmpty"</span>)
+    <span class="keyword">else</span>:
+        <span class="keyword">return</span> self.stack[self.top]
+<span class="function"><span class="keyword">def</span> <span class="title">push</span><span class="params">(self,obj)</span>:</span>
+    <span class="keyword">if</span> self.isFull():
+        <span class="keyword">raise</span> Exception(<span class="string">"StackOverFlow"</span>)
+    <span class="keyword">else</span>:
+        self.stack.append(obj)
+        self.top +=<span class="number">1</span>
+<span class="function"><span class="keyword">def</span> <span class="title">pop</span><span class="params">(self)</span>:</span>
+    <span class="keyword">if</span> self.isEmpty():
+        <span class="keyword">raise</span> Exception(<span class="string">"StackIsEmpty"</span>)
+    <span class="keyword">else</span>:
+        self.top -= <span class="number">1</span>
+        <span class="keyword">return</span> self.stack.pop()
+<span class="function"><span class="keyword">def</span> <span class="title">show</span><span class="params">(self)</span>:</span>
+    print(self.stack)
+</code></pre><p>这个类实现了栈这种数据结构，用来统计代码行数。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h4 id="一、_代码统计">一、    代码统计</h4><p>设计思想为各个类的方法名用正则表达式来匹配，每个放的行数使用栈来计算，类之间的引用关系使用图存储。通过判断是否存在环来判断是否有循环引用。使用Python实现。</p>
+<p>#####1、类SourceCod]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[经济学人词频统计]]></title>
+    <link href="http://geekzph.github.io/2015/12/15/%E7%BB%8F%E6%B5%8E%E5%AD%A6%E4%BA%BA%E8%AF%8D%E9%A2%91%E7%BB%9F%E8%AE%A1/"/>
+    <id>http://geekzph.github.io/2015/12/15/经济学人词频统计/</id>
+    <published>2015-12-15T06:55:39.000Z</published>
+    <updated>2015-12-15T06:55:39.000Z</updated>
+    <content type="html"></content>
+    <summary type="html">
+    
+    </summary>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[利用Python提取心跳节律信息]]></title>
