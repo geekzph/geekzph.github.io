@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://geekzph.github.io/"/>
-  <updated>2016-03-05T15:44:05.000Z</updated>
+  <updated>2016-09-18T09:37:18.000Z</updated>
   <id>http://geekzph.github.io/</id>
   
   <author>
@@ -13,6 +13,83 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[使用ngrok实现内网穿透]]></title>
+    <link href="http://geekzph.github.io/2016/08/18/%E4%BD%BF%E7%94%A8ngrok%E5%AE%9E%E7%8E%B0%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/"/>
+    <id>http://geekzph.github.io/2016/08/18/使用ngrok实现内网穿透/</id>
+    <published>2016-08-18T13:52:33.000Z</published>
+    <updated>2016-09-18T09:37:18.000Z</updated>
+    <content type="html"><![CDATA[<p>在很多时候我需要把内网的东西暴露给外网，但是又没有外网IP。这个时候我们可以借助一些内网穿透工具达到这个目的，例如花生壳之类。但是这些收费的。ngrok是一个开源的内网穿透服务，可以在他的官网注册账号实现内网穿透，但是现在应被墙了。不过我们可以用他的源码在自己的VPS上搭建这个服务。ngrok可以做TCP端口转发，对于Linux可以将其映射到22端口进行SSH连接。Windows的远程桌面可以将其映射到3389端口来实现。同理，如果要做MySQL的远程连接，只需映射3306端口即可。本文详细记录了整个搭建过程。</p>
+<h2 id="编译Ngrok">编译Ngrok</h2><p>以Ubuntu 14.04 为例<br>1、安装必备工具</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">sudo</span> apt-<span class="preprocessor">get</span> install <span class="keyword">build-essential </span>mercurial git</span><br></pre></td></tr></table></figure>
+<p>2、配置Go环境<br>下载Go源码</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -O <span class="string">https:</span><span class="comment">//storage.googleapis.com/golang/go1.6.linux-amd64.tar.gz</span></span><br></pre></td></tr></table></figure>
+<p>注意：同过apt-get 方式下载的Go可能会由于版本低而导致无法编译</p>
+<p>解压源码</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">tar</span> <span class="tag">xvf</span> <span class="tag">go1</span><span class="class">.6</span><span class="class">.linux-amd64</span><span class="class">.tar</span><span class="class">.gz</span></span><br></pre></td></tr></table></figure>
+<p>Go目录的权限改为root，并把它移动到/usr/local目录</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo chown -R roo<span class="variable">t:root</span> ./<span class="keyword">go</span></span><br><span class="line">sudo mv <span class="keyword">go</span> /usr/local</span><br></pre></td></tr></table></figure>
+<p>配置环境变量，打开.profile 文件</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="keyword">vi</span> ~/.<span class="keyword">profile</span></span><br></pre></td></tr></table></figure>
+<p>在末尾加入下面两行</p>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export GOPATH=<span class="variable">$HOME</span>/work </span><br><span class="line">export PATH=<span class="variable">$PATH</span>:/usr/local/go/bin:<span class="variable">$GOPATH</span>/bin</span><br></pre></td></tr></table></figure>
+<p>编译使其生效</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">source</span> ~/.<span class="keyword">profile</span></span><br></pre></td></tr></table></figure>
+<p>测试Go是否安装成功</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">go</span> <span class="keyword">version</span></span><br></pre></td></tr></table></figure>
+<p>3、编译ngrok源码</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git clone http<span class="variable">s:</span>//github.<span class="keyword">com</span>/tutumcloud/ngrok.git ngrok</span><br><span class="line"><span class="keyword">cd</span> ngrok</span><br></pre></td></tr></table></figure>
+<p>生成并替换源码里默认的证书，注意域名修改为你自己的</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">NGROK_DOMAIN=<span class="string">"geekzph.com"</span></span><br><span class="line"></span><br><span class="line">openssl genrsa -out base<span class="class">.key</span> <span class="number">2048</span></span><br><span class="line">openssl req -new -x509 -nodes -key base<span class="class">.key</span> -days <span class="number">10000</span> -subj <span class="string">"/CN=$NGROK_DOMAIN"</span> -out base<span class="class">.pem</span></span><br><span class="line">openssl genrsa -out server<span class="class">.key</span> <span class="number">2048</span></span><br><span class="line">openssl req -new -key server<span class="class">.key</span> -subj <span class="string">"/CN=$NGROK_DOMAIN"</span> -out server<span class="class">.csr</span></span><br><span class="line">openssl x509 -req -<span class="keyword">in</span> server<span class="class">.csr</span> -CA base<span class="class">.pem</span> -CAkey base<span class="class">.key</span> -CAcreateserial -days <span class="number">10000</span> -out server<span class="class">.crt</span></span><br><span class="line"></span><br><span class="line">cp base<span class="class">.pem</span> assets/client/tls/ngrokroot.crt</span><br></pre></td></tr></table></figure>
+<p>编译</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo make GOOS=linux <span class="operator"><span class="keyword">release</span>-<span class="keyword">server</span> <span class="keyword">release</span>-<span class="keyword">client</span></span></span><br></pre></td></tr></table></figure>
+<p>如果出现类似下面的错误</p>
+<blockquote>
+<p>GOOS=”” GOARCH=”” go get github.com/jteeuwen/go-bindata/go-bindata<br>bin/go-bindata -nomemcopy -pkg=assets -tags=debug \<br>-debug=true \<br>-o=src/ngrok/client/assets/assets_debug.go \<br>assets/client/…<br>make: bin/go-bindata：command not found<br>make: <em>*</em> [client-assets] error 127</p>
+</blockquote>
+<p>则可是<br>1、Go的环境变量没有设置好，需要重新检查环境变量<br>2、编译的时候GOOS没有设置为linux</p>
+<p>如果编译成功的话，在ngrok/bin下应该有ngrok、ngrokd 两个可执行文件。</p>
+<p>5、启动服务端</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd ngrok/</span><br><span class="line">sudo ./bin/ngrokd -tlsKey=server<span class="class">.key</span> -tlsCrt=server<span class="class">.crt</span> -domain=<span class="string">"geekzph.com"</span> -httpAddr=<span class="string">":9090"</span> -httpsAddr=<span class="string">":9092"</span></span><br></pre></td></tr></table></figure>
+<p>现在服务端已经运行起来了，ngrokd 会开一个 4443 端口用来跟客户端通讯。</p>
+<p>6、配置域名解析<br>我用的DNSPOD的域名解析服务<br><img src="/media/Snip20160918_3.png" alt="Snip20160918_3"><br>把域名泛解析到 VPS 上,记录值为VPS的IP地址。这时候访问geekzph.com，会出现</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Tunnel geekzph<span class="class">.com</span>:<span class="number">9091</span> not found</span><br></pre></td></tr></table></figure>
+<p>说明一切已经就绪了。</p>
+<p>7、客户端<br>由于我们刚才编译的是linux的客户端，如果需要在Windows上使用的话还需要编译一个Windows的客户端</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#切到go的安装目录 </span></span><br><span class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span>/go/src </span><br><span class="line"><span class="comment">#给Go编译器加上交叉编译windows/amd64程序的功能 </span></span><br><span class="line">GOOS=windows GOARCH=amd64 ./make.bash</span><br></pre></td></tr></table></figure>
+<p>开始编译</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#切回到ngrok目录 </span></span><br><span class="line">cd - </span><br><span class="line"><span class="preprocessor">#执行如下命令编译Windows <span class="number">64</span>位客户端 </span></span><br><span class="line">GOOS=windows GOARCH=amd64 make release-client </span><br><span class="line"><span class="preprocessor">#以上GOARCH=amd64指的是编译为<span class="number">64</span>位版本，如需<span class="number">32</span>位改成GOARCH=<span class="number">386</span>即可</span></span><br></pre></td></tr></table></figure>
+<p>Windows客户端ngrok就编译成功了，我们可以在./bin/windows_amd64/目录下找到执行文件ngrok.exe。使用scp命令将其从vps上下载到Windows上。</p>
+<p>然后在ngrok目录下新建一个配置文件，例如命名为grok.cfg：</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">server_addr:</span> gekezph.<span class="string">com:</span><span class="number">4443</span></span><br><span class="line"><span class="string">trust_host_root_certs:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+<p>打开命令提示符，切到ngrok.exe所在目录，并执行以下命令。</p>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#启动ngrok客户端</span></span><br><span class="line"><span class="preprocessor">#注意：如果不加参数-subdomain=test，将会随机自动分配子域名。</span></span><br><span class="line"><span class="preprocessor">#</span></span><br><span class="line">ngrok -config=ngrok.cfg -subdomain=test <span class="number">80</span></span><br></pre></td></tr></table></figure>
+<p>这样就配置成功了！访问。test.geekzph.com就可以看到网站内容了。以上是映射的http服务，还以映射tcp服务，这样就能ssh，远程桌面等功能。</p>
+<p>我们以远程桌面为例：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#这里以远程桌面时的<span class="number">3389</span>端口为例 </span></span><br><span class="line">ngrok -proto=tcp <span class="number">3389</span></span><br></pre></td></tr></table></figure>
+<p>之后出现下面提示</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#客户端ngrok正常执行显示的内容 </span></span><br><span class="line">ngrok (Ctrl+C to quit) </span><br><span class="line">Tunnel Status online </span><br><span class="line">Version <span class="number">1.7</span>/<span class="number">1.7</span> </span><br><span class="line">Forwarding tcp:<span class="comment">//geekzph.com:98805 -&gt; 127.0.0.1:22 </span></span><br><span class="line">Web Interface <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">4040</span> </span><br><span class="line"><span class="preprocessor"># Conn <span class="number">0</span> </span></span><br><span class="line">Avg Conn Time <span class="number">0.00</span>ms</span><br></pre></td></tr></table></figure>
+<p>这个时候在远程桌面客户端的地址输入：geekzph.com:98805，就可以连接到位于内网的电脑了。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>在很多时候我需要把内网的东西暴露给外网，但是又没有外网IP。这个时候我们可以借助一些内网穿透工具达到这个目的，例如花生壳之类。但是这些收费的。ngrok是一个开源的内网穿透服务，可以在他的官网注册账号实现内网穿透，但是现在应被墙了。不过我们可以用他的源码在自己的VPS上搭建]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[深入理解快速排序]]></title>
+    <link href="http://geekzph.github.io/2016/08/18/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/"/>
+    <id>http://geekzph.github.io/2016/08/18/深入理解快速排序/</id>
+    <published>2016-08-18T13:29:29.000Z</published>
+    <updated>2016-08-18T13:29:30.000Z</updated>
+    <content type="html"></content>
+    <summary type="html">
+    
+    </summary>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[搭建Git服务器]]></title>
