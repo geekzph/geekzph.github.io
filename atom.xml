@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://geekzph.github.io/"/>
-  <updated>2016-11-28T12:24:08.000Z</updated>
+  <updated>2017-03-01T13:41:56.000Z</updated>
   <id>http://geekzph.github.io/</id>
   
   <author>
@@ -13,6 +13,43 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[mac环境变量设置]]></title>
+    <link href="http://geekzph.github.io/2017/03/01/mac%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E8%AE%BE%E7%BD%AE/"/>
+    <id>http://geekzph.github.io/2017/03/01/mac环境变量设置/</id>
+    <published>2017-03-01T13:29:39.000Z</published>
+    <updated>2017-03-01T13:41:56.000Z</updated>
+    <content type="html"><![CDATA[<p>OS X系统的环境变量，加载顺序为：</p>
+<pre><code>/etc/profile
+/etc/paths 
+~/<span class="class">.bash_profile</span> 
+~/<span class="class">.bash_login</span> 
+~/<span class="class">.profile</span> 
+~/<span class="class">.bashrc</span>
+/etc/profile和/etc/paths是系统级别的，系统启动就会加载，
+</code></pre><p>后面几个是当前用户级的环境变量。</p>
+<p>~/.bash_profile，~/.bash_login，~/.profile按照从前往后的顺序读取，<br>如果~/.bash_profile文件存在，则后面的几个文件就会被忽略不读了，<br>如果~/.bash_profile文件不存在，才会以此类推读取后面的文件。</p>
+<p>~/.bashrc没有上述规则，它是bash shell打开的时候载入的。</p>
+<p>设置PATH的语法为：</p>
+<pre><code>export <span class="built_in">PATH</span>="$<span class="built_in">PATH</span>:&lt;<span class="built_in">PATH</span> <span class="number">1</span>&gt;:&lt;<span class="built_in">PATH</span> <span class="number">2</span>&gt;:&lt;<span class="built_in">PATH</span> <span class="number">3</span>&gt;:...:&lt;<span class="built_in">PATH</span> N&gt;"
+</code></pre><p>注：<br>（1）一般环境变量更改后，重启后才可生效。如果想立刻生效，则可执行下面的语句：</p>
+<pre><code>$ <span class="built_in">source</span> 文件路径
+</code></pre><p>（2）如果默认shell是bash，那么shell启动时会触发.bashrc，如果默认shell是zsh，那么shell启动时会触发.zshrc，则需要编辑 .zshrc 这个文件 vi ~/.zshrc，否则环境变量在zsh中不能生效</p>
+<p>(3) 使用echo命令查看是否生效</p>
+<pre><code>echo <span class="variable">$path</span>
+</code></pre><p>(4)添加路径时候不能使用~，比如路径 ~/mongodb/应该改为/Users/用户名/mongodb</p>
+<p>参考文章：<br><a href="http://www.jianshu.com/p/e6396fab1879" target="_blank" rel="external">http://www.jianshu.com/p/e6396fab1879</a><br><a href="http://cnbin.github.io/blog/2015/06/20/zsh-tian-jia-huan-jing-bian-liang/" target="_blank" rel="external">http://cnbin.github.io/blog/2015/06/20/zsh-tian-jia-huan-jing-bian-liang/</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>OS X系统的环境变量，加载顺序为：</p>
+<pre><code>/etc/profile
+/etc/paths 
+~/<span class="class">.bash_profile</span> 
+~/<span class="class">.bash_login<]]>
+    </summary>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[《自控力》书摘]]></title>
