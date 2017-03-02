@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://geekzph.github.io/"/>
-  <updated>2017-03-01T14:06:00.000Z</updated>
+  <updated>2017-03-02T15:28:19.000Z</updated>
   <id>http://geekzph.github.io/</id>
   
   <author>
@@ -16,10 +16,10 @@
   
   <entry>
     <title><![CDATA[Mac环境变量设置]]></title>
-    <link href="http://geekzph.github.io/2017/03/01/Mac%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E8%AE%BE%E7%BD%AE/"/>
-    <id>http://geekzph.github.io/2017/03/01/Mac环境变量设置/</id>
-    <published>2017-03-01T13:29:39.000Z</published>
-    <updated>2017-03-01T14:06:00.000Z</updated>
+    <link href="http://geekzph.github.io/2017/03/02/Mac%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E8%AE%BE%E7%BD%AE/"/>
+    <id>http://geekzph.github.io/2017/03/02/Mac环境变量设置/</id>
+    <published>2017-03-02T15:27:27.000Z</published>
+    <updated>2017-03-02T15:28:19.000Z</updated>
     <content type="html"><![CDATA[<p>OS X系统的环境变量，加载顺序为：</p>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">/etc/profile</span><br><span class="line">/etc/paths </span><br><span class="line">~/<span class="class">.bash_profile</span> </span><br><span class="line">~/<span class="class">.bash_login</span> </span><br><span class="line">~/<span class="class">.profile</span> </span><br><span class="line">~/.bashrc</span><br></pre></td></tr></table></figure>
 <p>/etc/profile和/etc/paths是系统级别的，系统启动就会加载，<br>后面几个是当前用户级的环境变量。<br>~/.bash_profile，~/.bash_login，~/.profile按照从前往后的顺序读取，如果~/.bash_profile文件存在，则后面的几个文件就会被忽略不读了，如果~/.bash_profile文件不存在，才会以此类推读取后面的文件。<br>~/.bashrc没有上述规则，它是bash shell打开的时候载入的。<br>设置PATH的语法为：</p>
