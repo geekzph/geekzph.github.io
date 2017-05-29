@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://geekzph.github.io/"/>
-  <updated>2017-05-21T01:34:07.000Z</updated>
+  <updated>2017-05-28T07:45:57.000Z</updated>
   <id>http://geekzph.github.io/</id>
   
   <author>
@@ -15,11 +15,36 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[Gephi导入csv文件的问题]]></title>
+    <link href="http://geekzph.github.io/2017/05/28/Gephi%E5%AF%BC%E5%85%A5csv%E6%96%87%E4%BB%B6%E7%9A%84%E9%97%AE%E9%A2%98/"/>
+    <id>http://geekzph.github.io/2017/05/28/Gephi导入csv文件的问题/</id>
+    <published>2017-05-28T07:30:10.000Z</published>
+    <updated>2017-05-28T07:45:57.000Z</updated>
+    <content type="html"><![CDATA[<p>做实验室输出类似如下的数据，需要导入到Gephi画图</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> <span class="number">2</span> <span class="number">1991</span></span><br><span class="line"><span class="number">2</span> <span class="number">1</span> <span class="number">1991</span></span><br><span class="line"><span class="number">4</span> <span class="number">5</span> <span class="number">2003</span></span><br><span class="line"><span class="number">5</span> <span class="number">4</span> <span class="number">2003</span></span><br><span class="line"><span class="number">3</span> <span class="number">9</span> <span class="number">1972</span></span><br><span class="line"><span class="number">9</span> <span class="number">3</span> <span class="number">1972</span></span><br><span class="line">.  .  .</span><br><span class="line">.  .  .</span><br><span class="line">.  .  .</span><br></pre></td></tr></table></figure>
+<p>于是将其改为csv格式，并将内容改为如下形式</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">source target wight</span><br><span class="line"><span class="number">1</span> <span class="number">2</span> <span class="number">1991</span></span><br><span class="line"><span class="number">2</span> <span class="number">1</span> <span class="number">1991</span></span><br><span class="line"><span class="number">4</span> <span class="number">5</span> <span class="number">2003</span></span><br><span class="line"><span class="number">5</span> <span class="number">4</span> <span class="number">2003</span></span><br><span class="line"><span class="number">3</span> <span class="number">9</span> <span class="number">1972</span></span><br><span class="line"><span class="number">9</span> <span class="number">3</span> <span class="number">1972</span></span><br><span class="line">.  .  .</span><br><span class="line">.  .  .</span><br><span class="line">.  .  .</span><br></pre></td></tr></table></figure>
+<p>打开Gehpi ，依次选择 文件-&gt;importspreadsheet<br>，选择刚才保存的csv文件。分隔符为空格，表格为边表格。</p>
+<p>但是下面却出现红色警告</p>
+<blockquote>
+<p>边表格需要一个包含节点标号的“源”和“目标”列</p>
+</blockquote>
+<p>在网上查了好久，说是应为编码的原因，但是换个编码还是不行。而且我认为并不是编码的问题，因为在预览里，csv的数据都是可以正常显示和分列的。如果是编码问题的话，应该是会出现乱码。</p>
+<p>后来经过摸索发现，在出现类似情况的时候，可以把数据存入Excel后，再导出为csv，这样就可以正常导入Gephi了。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>做实验室输出类似如下的数据，需要导入到Gephi画图</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span clas]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[刷题：排列组合题目的总结]]></title>
     <link href="http://geekzph.github.io/2017/05/20/%E5%88%B7%E9%A2%98%EF%BC%9A%E6%8E%92%E5%88%97%E7%BB%84%E5%90%88%E9%A2%98%E7%9B%AE%E7%9A%84%E6%80%BB%E7%BB%93/"/>
     <id>http://geekzph.github.io/2017/05/20/刷题：排列组合题目的总结/</id>
     <published>2017-05-20T13:10:25.000Z</published>
-    <updated>2017-05-21T01:34:07.000Z</updated>
+    <updated>2017-05-29T15:39:23.000Z</updated>
     <content type="html"><![CDATA[<p>最近刷了一些有关排列组合的题目，这些题目都可以用回溯法来解决。</p>
 <p>Subsets : <a href="https://leetcode.com/problems/subsets/" target="_blank" rel="external">https://leetcode.com/problems/subsets/</a></p>
 <p>找出给定数组的所有子集，给定的数组无重复数字。</p>
@@ -33,10 +58,12 @@
 <p>找出给定数组的排列，给定的数组有重复数字。</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>Combination Sum : <a href="https://leetcode.com/problems/combination-sum/" target="_blank" rel="external">https://leetcode.com/problems/combination-sum/</a></p>
-<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="escape">``</span><span class="escape">`</span><br><span class="line"></span></span><br><span class="line"><span class="label">Combination Sum II (can't reuse same element) : https:</span>//leetcode.com/problems/combination-sum-ii/</span><br></pre></td></tr></table></figure>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Palindrome <span class="string">Partitioning :</span> <span class="string">https:</span><span class="comment">//leetcode.com/problems/palindrome-partitioning/</span></span><br></pre></td></tr></table></figure>
-<p>```</p>
-]]></content>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Solution &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; combinationSum(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; candidates, <span class="keyword">int</span> target) &#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; res;</span><br><span class="line">        sort(candidates.begin(), candidates.end());</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; combination;</span><br><span class="line">        genCombinations(candidates, target, res, combination, <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">genCombinations</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;candidates, <span class="keyword">int</span> target, <span class="built_in">vector</span>&lt;<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &gt; &amp;res, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;combination, <span class="keyword">int</span> begin)</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!target)</span><br><span class="line">        &#123;</span><br><span class="line">            res.push_back(combination);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = begin; i != candidates.size() &amp;&amp; target &gt;= candidates[i]; ++i)</span><br><span class="line">        &#123;</span><br><span class="line">            combination.push_back(candidates[i]);</span><br><span class="line">            genCombinations(candidates, target - candidates[i], res, combination, i);</span><br><span class="line">            combination.pop_back();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>Combination Sum II (can’t reuse same element) : <a href="https://leetcode.com/problems/combination-sum-ii/" target="_blank" rel="external">https://leetcode.com/problems/combination-sum-ii/</a></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Solution &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; combinationSum2(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; candidates, <span class="keyword">int</span> target) &#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; res;</span><br><span class="line">        sort(candidates.begin(), candidates.end());</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; combination;</span><br><span class="line">        genCombination2(candidates, target, res, combination, <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">genCombination2</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;candidates, <span class="keyword">int</span> target, <span class="built_in">vector</span>&lt;<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &gt; &amp;res, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;combination, <span class="keyword">int</span> begin)</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!target)</span><br><span class="line">        &#123;</span><br><span class="line">            res.push_back(combination);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = begin; i != candidates.size() &amp;&amp; target &gt;= candidates[i]; ++i)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(i == begin || candidates[i] != candidates[i - <span class="number">1</span>])</span><br><span class="line">            &#123;</span><br><span class="line">                combination.push_back(candidates[i]);</span><br><span class="line">                genCombination2(candidates, target - candidates[i], res, combination, i + <span class="number">1</span>);</span><br><span class="line">                combination.pop_back();</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>Palindrome Partitioning : <a href="https://leetcode.com/problems/palindrome-partitioning/" target="_blank" rel="external">https://leetcode.com/problems/palindrome-partitioning/</a></p>
+<pre><code>
+</code></pre>]]></content>
     <summary type="html">
     <![CDATA[<p>最近刷了一些有关排列组合的题目，这些题目都可以用回溯法来解决。</p>
 <p>Subsets : <a href="https://leetcode.com/problems/subsets/" target="_blank" rel="external">https://]]>
@@ -887,35 +914,6 @@ sudo apt-<span class="keyword">get</span> <span class="keyword">check</span> 检
     <summary type="html">
     <![CDATA[<ol>
 <li><p>sudo apt-get install packagename 命令<br>apt-get是ubuntu下一个强大的命令行工具。可以用它来安装新的软件包，升级现有的软件包，升级列表索引，甚至升级整个系统。如果出现could not get lock /v]]>
-    </summary>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Mac下Parallels Desktop安装Ubuntu无法全屏]]></title>
-    <link href="http://geekzph.github.io/2015/10/16/Mac%E4%B8%8BParallels-Desktop%E5%AE%89%E8%A3%85Ubuntu%E6%97%A0%E6%B3%95%E5%85%A8%E5%B1%8F/"/>
-    <id>http://geekzph.github.io/2015/10/16/Mac下Parallels-Desktop安装Ubuntu无法全屏/</id>
-    <published>2015-10-16T13:14:03.000Z</published>
-    <updated>2015-10-16T13:31:38.000Z</updated>
-    <content type="html"><![CDATA[<p>在Mac中，Parallels Desktop安装Ubuntu无法全屏问题出现，是由于在安装ubuntn是没有选择快速安装，因此在安装过程中就没有安装Parallels Tools。因此就会出现比如分辨率问题，或者终端窗口显示不正常等一些问题。解决这个问题方法就是安装Parallels Tools。可按照以下步骤安装：</p>
-<ol>
-<li>启动虚拟机。</li>
-<li>确保虚拟机的 CD/DVD 驱动指向默认的空驱动</li>
-<li>操作系统启动后请点击PD顶部菜单里的操作-&gt;安装Parallels Tools。<br>prl-tools-lin.iso 镜像文件将会加载至虚拟机的 CD/DVD 驱动器中。<br>如果上述方法没有加载成功，您也可手动连接并安装 Parallels Tools ISO 镜像文件。<br>右击虚拟机窗口的状态栏中的 CD/DVD 驱动图标并选择连接镜像。在弹出的 Finder 窗口中，进入硬盘文件夹（通常名为 “Macintosh HD”），选择 /Library/Parallels/Tools/ 文件夹（针对Parallels Desktop 7）或 /Applications/Parallels Desktop.app/Contents/Resources/Tools/ （针对 Parallels Desktop 8），选择prl-tools-lin.iso文件，然后点击打开连接至虚拟机。</li>
-<li>在您的 Ubuntu 虚拟机中启动 终端。</li>
-<li><p>在终端中找到光驱的位置：</p>
-<p> cd /media/username/Parallels\ Tools/</p>
-</li>
-</ol>
-<p>输入以下命令安装：</p>
-<pre><code>sudo ./<span class="keyword">install</span>
-</code></pre><p>根据 Parallels Tools 安装程序的提示完成安装。在 Parallels Tools 安装完成后，重新启动虚拟机。</p>
-<blockquote>
-<p>注意：1.上述命令中的Parallels\ Tools/的斜杠是因为路径名字包含空格，使用\作为转义字符代替空格<br> 2.不要在光驱中双击install-gui来安装，那样是无法安装的，必须在命令行下才可以安装</p>
-</blockquote>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>在Mac中，Parallels Desktop安装Ubuntu无法全屏问题出现，是由于在安装ubuntn是没有选择快速安装，因此在安装过程中就没有安装Parallels Tools。因此就会出现比如分辨率问题，或者终端窗口显示不正常等一些问题。解决这个问题方法就是安装Par]]>
     </summary>
     
   </entry>
