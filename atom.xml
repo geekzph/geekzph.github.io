@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://geekzph.github.io/"/>
-  <updated>2017-08-19T10:48:52.000Z</updated>
+  <updated>2017-08-24T02:01:31.000Z</updated>
   <id>http://geekzph.github.io/</id>
   
   <author>
@@ -15,15 +15,45 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title><![CDATA[LeetCode Top 100 Liked Question 3]]></title>
-    <link href="http://geekzph.github.io/2017/08/19/LeetCode-Top-100-Liked-Question-3/"/>
-    <id>http://geekzph.github.io/2017/08/19/LeetCode-Top-100-Liked-Question-3/</id>
-    <published>2017-08-19T10:48:52.000Z</published>
-    <updated>2017-08-19T10:48:52.000Z</updated>
+    <title><![CDATA[LeetCode Top 100 Liked Question 5]]></title>
+    <link href="http://geekzph.github.io/2017/08/24/LeetCode-Top-100-Liked-Question-5/"/>
+    <id>http://geekzph.github.io/2017/08/24/LeetCode-Top-100-Liked-Question-5/</id>
+    <published>2017-08-24T02:01:31.000Z</published>
+    <updated>2017-08-24T02:01:31.000Z</updated>
     <content type="html"></content>
     <summary type="html">
     
     </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[LeetCode Top 100 Liked Question 4]]></title>
+    <link href="http://geekzph.github.io/2017/08/24/LeetCode-Top-100-Liked-Question-4/"/>
+    <id>http://geekzph.github.io/2017/08/24/LeetCode-Top-100-Liked-Question-4/</id>
+    <published>2017-08-24T02:01:16.000Z</published>
+    <updated>2017-08-24T02:01:16.000Z</updated>
+    <content type="html"></content>
+    <summary type="html">
+    
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[LeetCode Top 100 Liked Question 3]]></title>
+    <link href="http://geekzph.github.io/2017/08/19/LeetCode-Top-100-Liked-Question-3/"/>
+    <id>http://geekzph.github.io/2017/08/19/LeetCode-Top-100-Liked-Question-3/</id>
+    <published>2017-08-19T10:48:52.000Z</published>
+    <updated>2017-08-24T01:49:46.000Z</updated>
+    <content type="html"></content>
+    <summary type="html">
+    
+    </summary>
+    
+      <category term="Leetcode" scheme="http://geekzph.github.io/tags/Leetcode/"/>
+    
+      <category term="算法" scheme="http://geekzph.github.io/categories/%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   
@@ -32,20 +62,24 @@
     <link href="http://geekzph.github.io/2017/08/19/LeetCode-Top-100-Liked-Question-2/"/>
     <id>http://geekzph.github.io/2017/08/19/LeetCode-Top-100-Liked-Question-2/</id>
     <published>2017-08-19T10:48:44.000Z</published>
-    <updated>2017-08-19T10:48:44.000Z</updated>
+    <updated>2017-08-24T01:49:38.000Z</updated>
     <content type="html"></content>
     <summary type="html">
     
     </summary>
     
+      <category term="Leetcode" scheme="http://geekzph.github.io/tags/Leetcode/"/>
+    
+      <category term="算法" scheme="http://geekzph.github.io/categories/%E7%AE%97%E6%B3%95/"/>
+    
   </entry>
   
   <entry>
-    <title><![CDATA[LeetCode Top 100 Liked Question 1 - 20]]></title>
+    <title><![CDATA[LeetCode Top 100 Liked Question 1]]></title>
     <link href="http://geekzph.github.io/2017/08/19/LeetCode-Top-100-Liked-Question-1/"/>
     <id>http://geekzph.github.io/2017/08/19/LeetCode-Top-100-Liked-Question-1/</id>
     <published>2017-08-19T10:48:40.000Z</published>
-    <updated>2017-08-21T09:13:39.000Z</updated>
+    <updated>2017-08-24T01:37:22.000Z</updated>
     <content type="html"><![CDATA[<ul>
 <li>Two Sum ：从数组中找到两个数相加和为目标值</li>
 <li>Add Two Numbers ：将两个链表表示的数相加</li>
@@ -159,18 +193,9 @@
 <li>Longest Substring Without Repeating Characters ：没有重复元素的最长子]]>
     </summary>
     
-  </entry>
-  
-  <entry>
-    <title><![CDATA[LeetCode Top 100 Liked Question]]></title>
-    <link href="http://geekzph.github.io/2017/08/19/LeetCode-Top-100-Liked-Question/"/>
-    <id>http://geekzph.github.io/2017/08/19/LeetCode-Top-100-Liked-Question/</id>
-    <published>2017-08-19T10:48:21.000Z</published>
-    <updated>2017-08-19T10:48:21.000Z</updated>
-    <content type="html"></content>
-    <summary type="html">
+      <category term="Leetcode" scheme="http://geekzph.github.io/tags/Leetcode/"/>
     
-    </summary>
+      <category term="算法" scheme="http://geekzph.github.io/categories/%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   
@@ -179,11 +204,15 @@
     <link href="http://geekzph.github.io/2017/08/06/C-%E8%99%9A%E5%87%BD%E6%95%B0%E7%9A%84%E7%9A%84%E5%AE%9E%E7%8E%B0/"/>
     <id>http://geekzph.github.io/2017/08/06/C-虚函数的的实现/</id>
     <published>2017-08-06T15:50:42.000Z</published>
-    <updated>2017-08-06T15:50:42.000Z</updated>
+    <updated>2017-08-24T01:50:26.000Z</updated>
     <content type="html"></content>
     <summary type="html">
     
     </summary>
+    
+      <category term="虚函数" scheme="http://geekzph.github.io/tags/%E8%99%9A%E5%87%BD%E6%95%B0/"/>
+    
+      <category term="C++" scheme="http://geekzph.github.io/categories/C/"/>
     
   </entry>
   
@@ -192,11 +221,15 @@
     <link href="http://geekzph.github.io/2017/08/06/%E4%B8%8D%E5%BE%97%E4%B8%8D%E7%9F%A5%E7%9A%84Linux%E5%91%BD%E4%BB%A4/"/>
     <id>http://geekzph.github.io/2017/08/06/不得不知的Linux命令/</id>
     <published>2017-08-06T15:50:18.000Z</published>
-    <updated>2017-08-06T15:50:18.000Z</updated>
+    <updated>2017-08-24T01:49:55.000Z</updated>
     <content type="html"></content>
     <summary type="html">
     
     </summary>
+    
+      <category term="命令" scheme="http://geekzph.github.io/tags/%E5%91%BD%E4%BB%A4/"/>
+    
+      <category term="Linux" scheme="http://geekzph.github.io/categories/Linux/"/>
     
   </entry>
   
@@ -205,7 +238,7 @@
     <link href="http://geekzph.github.io/2017/08/06/TCP%E5%8D%8F%E8%AE%AE%E9%82%A3%E4%BA%9B%E4%BA%8B%E5%84%BF/"/>
     <id>http://geekzph.github.io/2017/08/06/TCP协议那些事儿/</id>
     <published>2017-08-06T15:49:52.000Z</published>
-    <updated>2017-08-19T16:02:01.000Z</updated>
+    <updated>2017-08-24T01:50:37.000Z</updated>
     <content type="html"><![CDATA[<p>TCP是一个巨复杂的协议，因为他要解决很多问题，而这些问题又带出了很多子问题和阴暗面。所以学习TCP本身是个比较痛苦的过程，但对于学习的过程却能让人有很多收获。关于TCP这个协议的细节，我还是推荐你去看W.Richard Stevens的《TCP/IP 详解 卷1：协议》（当然，你也可以去读一下RFC793以及后面N多的RFC）。另外，本文我会使用英文术语，这样方便你通过这些英文关键词来查找相关的技术文档。</p>
 <p>之所以想写这篇文章，目的有三个，</p>
 <p>一个是想锻炼一下自己是否可以用简单的篇幅把这么复杂的TCP协议描清楚的能力。<br>另一个是觉得现在的好多程序员基本上不会认认真真地读本书，喜欢快餐文化，所以，希望这篇快餐文章可以让你对TCP这个古典技术有所了解，并能体会到软件设计中的种种难处。并且你可以从中有一些软件设计上的收获。<br>最重要的希望这些基础知识可以让你搞清很多以前一些似是而非的东西，并且你能意识到基础的重要。<br>所以，本文不会面面俱到，只是对TCP协议、算法和原理的科普。</p>
@@ -270,6 +303,10 @@
     <![CDATA[<p>TCP是一个巨复杂的协议，因为他要解决很多问题，而这些问题又带出了很多子问题和阴暗面。所以学习TCP本身是个比较痛苦的过程，但对于学习的过程却能让人有很多收获。关于TCP这个协议的细节，我还是推荐你去看W.Richard Stevens的《TCP/IP 详解 卷1：协议》（]]>
     </summary>
     
+      <category term="TCP" scheme="http://geekzph.github.io/tags/TCP/"/>
+    
+      <category term="网络" scheme="http://geekzph.github.io/categories/%E7%BD%91%E7%BB%9C/"/>
+    
   </entry>
   
   <entry>
@@ -277,11 +314,15 @@
     <link href="http://geekzph.github.io/2017/08/06/%E9%AB%98%E9%A2%91%E9%A2%98%E7%9B%AE/"/>
     <id>http://geekzph.github.io/2017/08/06/高频题目/</id>
     <published>2017-08-06T15:48:57.000Z</published>
-    <updated>2017-08-06T15:48:57.000Z</updated>
+    <updated>2017-08-24T01:50:09.000Z</updated>
     <content type="html"></content>
     <summary type="html">
     
     </summary>
+    
+      <category term="Leetcode" scheme="http://geekzph.github.io/tags/Leetcode/"/>
+    
+      <category term="算法" scheme="http://geekzph.github.io/categories/%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   
@@ -290,7 +331,7 @@
     <link href="http://geekzph.github.io/2017/08/05/%E9%93%BE%E8%A1%A8/"/>
     <id>http://geekzph.github.io/2017/08/05/链表/</id>
     <published>2017-08-05T13:00:25.000Z</published>
-    <updated>2017-08-05T15:35:13.000Z</updated>
+    <updated>2017-08-24T01:50:20.000Z</updated>
     <content type="html"><![CDATA[<p>Remove Duplicates from Sorted List<br><a href="https://leetcode.com/problems/remove-duplicates-from-sorted-list/description/" target="_blank" rel="external">https://leetcode.com/problems/remove-duplicates-from-sorted-list/description/</a></p>
 <p>Given a sorted linked list, delete all duplicates such that each element appear only once.<br>For example,<br>Given 1-&gt;1-&gt;2, return 1-&gt;2.<br>Given 1-&gt;1-&gt;2-&gt;3-&gt;3, return 1-&gt;2-&gt;3.</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    ListNode* deleteDuplicates(ListNode* head) &#123;</span><br><span class="line">        <span class="keyword">if</span>(head == <span class="keyword">NULL</span>)</span><br><span class="line">            <span class="keyword">return</span> head;</span><br><span class="line">        ListNode* node = head;</span><br><span class="line">        <span class="keyword">while</span>(node-&gt;next != <span class="keyword">NULL</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(node-&gt;val == node-&gt;next-&gt;val)&#123;</span><br><span class="line">                node-&gt;next = node-&gt;next-&gt;next;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                node = node-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> head;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
@@ -318,6 +359,10 @@
     <![CDATA[<p>Remove Duplicates from Sorted List<br><a href="https://leetcode.com/problems/remove-duplicates-from-sorted-list/description/" target="_bl]]>
     </summary>
     
+      <category term="Leetcode" scheme="http://geekzph.github.io/tags/Leetcode/"/>
+    
+      <category term="算法" scheme="http://geekzph.github.io/categories/%E7%AE%97%E6%B3%95/"/>
+    
   </entry>
   
   <entry>
@@ -325,7 +370,7 @@
     <link href="http://geekzph.github.io/2017/08/05/%E4%BA%8C%E5%88%86%E6%90%9C%E7%B4%A2/"/>
     <id>http://geekzph.github.io/2017/08/05/二分搜索/</id>
     <published>2017-08-05T08:22:24.000Z</published>
-    <updated>2017-08-05T08:22:50.000Z</updated>
+    <updated>2017-08-24T01:50:03.000Z</updated>
     <content type="html"><![CDATA[<p>Classical Binary Search<br><a href="http://www.lintcode.com/en/problem/classical-binary-search/" target="_blank" rel="external">http://www.lintcode.com/en/problem/classical-binary-search/</a><br>Description:Find any position of a target number in a sorted array. Return -1 if target does not exist.</p>
 <figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Solution &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    /**</span><br><span class="line">     * @param A an <span class="type">integer</span> array sorted <span class="type">in</span> ascending order</span><br><span class="line">     * @param <span class="type">target</span> an <span class="type">integer</span></span><br><span class="line">     * @<span class="keyword">return</span> an <span class="type">integer</span></span><br><span class="line">     */</span><br><span class="line">    <span class="built_in">int</span> findPosition(vector&lt;<span class="built_in">int</span>&gt;&amp; nums, <span class="built_in">int</span> <span class="type">target</span>) &#123;</span><br><span class="line">        // <span class="built_in">Write</span> your code here</span><br><span class="line">        <span class="keyword">if</span>(nums.empty()) <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        <span class="built_in">int</span> start = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">int</span> <span class="keyword">end</span> = nums.<span class="built_in">size</span>() - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(start + <span class="number">1</span> &lt; <span class="keyword">end</span>)&#123;</span><br><span class="line">            <span class="built_in">int</span> mid  = start + (<span class="keyword">end</span> - start) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span>(nums[mid] == <span class="type">target</span>)</span><br><span class="line">                <span class="keyword">return</span> mid;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(nums[mid] &lt; <span class="type">target</span>)</span><br><span class="line">                start = mid;</span><br><span class="line">            <span class="keyword">else</span> </span><br><span class="line">                <span class="keyword">end</span> = mid;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(nums[start] == <span class="type">target</span>)</span><br><span class="line">            <span class="keyword">return</span> start;</span><br><span class="line">        <span class="keyword">if</span>(nums[<span class="keyword">end</span>] == <span class="type">target</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">end</span>;</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>First Position of Target<br><a href="http://www.lintcode.com/en/problem/first-position-of-target/#" target="_blank" rel="external">http://www.lintcode.com/en/problem/first-position-of-target/#</a><br>For a given sorted array (ascending order) and a target number, find the first index of this number in O(log n) time complexity.<br>If the target number does not exist in the array, return -1.</p>
@@ -359,18 +404,9 @@
     <![CDATA[<p>Classical Binary Search<br><a href="http://www.lintcode.com/en/problem/classical-binary-search/" target="_blank" rel="external">http://ww]]>
     </summary>
     
-  </entry>
-  
-  <entry>
-    <title><![CDATA[STL源码分析之list]]></title>
-    <link href="http://geekzph.github.io/2017/07/11/STL%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E4%B9%8Blist/"/>
-    <id>http://geekzph.github.io/2017/07/11/STL源码分析之list/</id>
-    <published>2017-07-11T15:53:49.000Z</published>
-    <updated>2017-07-11T15:53:49.000Z</updated>
-    <content type="html"></content>
-    <summary type="html">
+      <category term="Leetcode" scheme="http://geekzph.github.io/tags/Leetcode/"/>
     
-    </summary>
+      <category term="算法" scheme="http://geekzph.github.io/categories/%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   
@@ -379,7 +415,7 @@
     <link href="http://geekzph.github.io/2017/07/05/%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1%E6%A6%82%E8%BF%B0/"/>
     <id>http://geekzph.github.io/2017/07/05/进程间通信概述/</id>
     <published>2017-07-05T11:49:33.000Z</published>
-    <updated>2017-07-05T11:49:51.000Z</updated>
+    <updated>2017-08-24T01:52:05.000Z</updated>
     <content type="html"><![CDATA[<p>进程间通信概述</p>
 <p>数据传输：一个进程需要将它的数据发送给另一个进程，发送的数据量在一个字节到几兆字节之间<br>共享数据：多个进程想要操作共享数据，一个进程对共享数据的修改，别的进程应该立刻看到。<br>通知时间：一个进程需要向另一个或一组进程发送消息，通知他们发生了某些事件（如进程终止时要通知父进程）<br>资源共享：多个进程之间共享同样的资源，为了做到这一点，需要内核提供锁和同步机制<br>进程控制：有些进程希望完全控制另一个进程的执行(如Debug进程)，此时控制进程希望能够拦截另一个进程的所有陷入的异常，并能够及时指导它的状态改变。<br>进程间通信方式</p>
 <p>管道(pipe)，有名管道(FIFO)<br>信号(signal)<br>共享内存(shared memory)<br>消息队列(message queue)<br>信号量(semaphore)<br>套接字(socket)<br>管道</p>
@@ -412,6 +448,10 @@
 <p>数据传输：一个进程需要将它的数据发送给另一个进程，发送的数据量在一个字节到几兆字节之间<br>共享数据：多个进程想要操作共享数据，一个进程对共享数据的修改，别的进程应该立刻看到。<br>通知时间：一个进程需要向另一个或一组进程发送消息，通知他们]]>
     </summary>
     
+      <category term="IPC" scheme="http://geekzph.github.io/tags/IPC/"/>
+    
+      <category term="Linux" scheme="http://geekzph.github.io/categories/Linux/"/>
+    
   </entry>
   
   <entry>
@@ -419,7 +459,7 @@
     <link href="http://geekzph.github.io/2017/07/03/Python%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E4%B9%8BGevent/"/>
     <id>http://geekzph.github.io/2017/07/03/Python并发编程之Gevent/</id>
     <published>2017-07-03T11:57:20.000Z</published>
-    <updated>2017-07-03T14:54:54.000Z</updated>
+    <updated>2017-08-24T01:52:10.000Z</updated>
     <content type="html"><![CDATA[<p>##Gevent<br>gevent是一个基于libev的并发库。它为各种并发和网络相关的任务提供了整洁的API。,以微线程greenlet为核心，使用了epoll事件监听机制以及诸多其他优化而变得高效。</p>
 <p>在gevent中用到的主要模式是Greenlet, 它是以C扩展模块形式接入Python的轻量级协程。 Greenlet全部运行在主程序操作系统进程的内部，但它们被协作式地调度。</p>
 <blockquote>
@@ -472,18 +512,9 @@
 <p>在gevent中用到的主要模式是Greenlet, 它]]>
     </summary>
     
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Python多线程]]></title>
-    <link href="http://geekzph.github.io/2017/07/01/Python%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
-    <id>http://geekzph.github.io/2017/07/01/Python多线程/</id>
-    <published>2017-07-01T14:24:43.000Z</published>
-    <updated>2017-07-01T14:24:43.000Z</updated>
-    <content type="html"></content>
-    <summary type="html">
+      <category term="并发" scheme="http://geekzph.github.io/tags/%E5%B9%B6%E5%8F%91/"/>
     
-    </summary>
+      <category term="Python" scheme="http://geekzph.github.io/categories/Python/"/>
     
   </entry>
   
@@ -492,7 +523,7 @@
     <link href="http://geekzph.github.io/2017/06/30/STL%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E4%B9%8B%E7%A9%BA%E9%97%B4%E9%85%8D%E7%BD%AE%E5%99%A8/"/>
     <id>http://geekzph.github.io/2017/06/30/STL源码分析之空间配置器/</id>
     <published>2017-06-30T15:20:43.000Z</published>
-    <updated>2017-08-21T05:30:04.000Z</updated>
+    <updated>2017-08-24T01:52:37.000Z</updated>
     <content type="html"><![CDATA[<p>在内存配置方面，为了避免小型区块所造成的内存破碎问题，STL设计为两级配置器。第一级配置器直接使用malloc()和free(). 第二层配置器有有一个内存池，用一个union obj数组free_list来存储内存的地址，数组的每一个元素都指向一个obj链表，也就是内存链表。数组从小到大表示负责8b,16b,24b,…,120b,128b内存请求。当请求的内存大于128b的时候调用第一级配置器，当请求的内存小于等于128b的时候调用第二级配置器。<br><img src="/images/1.jpg" alt=""></p>
 <p>第一级配置器</p>
 <figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="type">int</span> inst&gt;  </span><br><span class="line">class __malloc_alloc_template  </span><br><span class="line">&#123;  </span><br><span class="line">private:</span><br><span class="line">	//sfasdf</span><br><span class="line">	//调用malloc函数不成功后调用</span><br><span class="line">	<span class="keyword">static</span> <span class="type">void</span> *oom_malloc(size_t);</span><br><span class="line">	//调用realloc函数不成功后调用 </span><br><span class="line">	<span class="keyword">static</span> <span class="type">void</span> *oom_realloc(<span class="type">void</span> *, size_t);</span><br><span class="line">	//类似于C++的set_new_handle错误处理函数一样，如果不设置，在内存不足时，返回<span class="type">THROW_BAD_ALLOC</span></span><br><span class="line">	<span class="comment">#ifndef __STL_STATIC_TEMPLATE_MEMBER_BUG  </span></span><br><span class="line">		<span class="keyword">static</span> <span class="type">void</span> (* __malloc_alloc_oom_handler)();  </span><br><span class="line">	<span class="comment">#endif  </span></span><br><span class="line">	public:  </span><br><span class="line">	//直接调用malloc来分配内存</span><br><span class="line">	<span class="keyword">static</span> <span class="type">void</span> * allocate(size_t n)  </span><br><span class="line">	&#123;  </span><br><span class="line">	 <span class="type">void</span> *<span class="literal">result</span> = malloc(n);  </span><br><span class="line">	 <span class="keyword">if</span> (<span class="number">0</span> == <span class="literal">result</span>) <span class="literal">result</span> = oom_malloc(n);  //如果分配失败，则调用oom_malloc()</span><br><span class="line">	 <span class="keyword">return</span> <span class="literal">result</span>;  </span><br><span class="line">	&#125;  </span><br><span class="line"> 	//第一级配置器直接调用free来释放内存</span><br><span class="line">	<span class="keyword">static</span> <span class="type">void</span> deallocate(<span class="type">void</span> *p, size_t /* n */)  </span><br><span class="line">	&#123; </span><br><span class="line">		free(p); </span><br><span class="line">	&#125;  </span><br><span class="line">	//直接调用reallloc来分配内存</span><br><span class="line">	<span class="keyword">static</span> <span class="type">void</span> * reallocate(<span class="type">void</span> *p, size_t /* old_sz */, size_t new_sz)  </span><br><span class="line">	&#123;  </span><br><span class="line">	 <span class="type">void</span> * <span class="literal">result</span> = realloc(p, new_sz);  </span><br><span class="line">	 <span class="keyword">if</span> (<span class="number">0</span> == <span class="literal">result</span>) <span class="literal">result</span> = oom_realloc(p, new_sz);  //如果realloc分配不成功，调用oom_realloc()</span><br><span class="line">	 <span class="keyword">return</span> <span class="literal">result</span>;  </span><br><span class="line">	&#125;  </span><br><span class="line">	//异常处理函数，即内存分配失败后的处理</span><br><span class="line">	<span class="keyword">static</span> <span class="type">void</span> (* set_malloc_handler(<span class="type">void</span> (*f)()))()  </span><br><span class="line">	&#123;  </span><br><span class="line">	 <span class="type">void</span> (* old)() = __malloc_alloc_oom_handler;  </span><br><span class="line">	 __malloc_alloc_oom_handler = f;  </span><br><span class="line">	 <span class="keyword">return</span>(old);  </span><br><span class="line">	&#125;  </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
@@ -518,14 +549,18 @@
     <![CDATA[<p>在内存配置方面，为了避免小型区块所造成的内存破碎问题，STL设计为两级配置器。第一级配置器直接使用malloc()和free(). 第二层配置器有有一个内存池，用一个union obj数组free_list来存储内存的地址，数组的每一个元素都指向一个obj链表，也就是内存链]]>
     </summary>
     
+      <category term="STL" scheme="http://geekzph.github.io/tags/STL/"/>
+    
+      <category term="C++" scheme="http://geekzph.github.io/categories/C/"/>
+    
   </entry>
   
   <entry>
-    <title><![CDATA[刷题：二叉树与分治法]]></title>
-    <link href="http://geekzph.github.io/2017/06/30/%E5%88%B7%E9%A2%98%EF%BC%9A%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%8E%E5%88%86%E6%B2%BB%E6%B3%95/"/>
-    <id>http://geekzph.github.io/2017/06/30/刷题：二叉树与分治法/</id>
+    <title><![CDATA[二叉树与分治法]]></title>
+    <link href="http://geekzph.github.io/2017/06/30/%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%8E%E5%88%86%E6%B2%BB%E6%B3%95/"/>
+    <id>http://geekzph.github.io/2017/06/30/二叉树与分治法/</id>
     <published>2017-06-30T02:33:46.000Z</published>
-    <updated>2017-08-05T12:58:29.000Z</updated>
+    <updated>2017-08-24T01:52:27.000Z</updated>
     <content type="html"><![CDATA[<p>Binary Tree Preorder Traversal<br>Given a binary tree, return the preorder traversal of its nodes’ values.</p>
 <p>recursion<br><figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">class <span class="type">Solution</span> &#123;</span><br><span class="line">public:</span><br><span class="line">    /**</span><br><span class="line">     * @param root: <span class="type">The</span> root <span class="keyword">of</span> binary tree.</span><br><span class="line">     * @<span class="keyword">return</span>: <span class="type">Preorder</span> <span class="keyword">in</span> vector which contains node values.</span><br><span class="line">     */</span><br><span class="line">    <span class="type">void</span> traverse(<span class="type">TreeNode</span> *root, vector&lt;<span class="type">int</span>&gt; &amp;res)&#123;</span><br><span class="line">        <span class="keyword">if</span>(root == <span class="type">NULL</span>)</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        res.push_back(root-&gt;val);</span><br><span class="line">        traverse(root-&gt;left, res);</span><br><span class="line">        traverse(root-&gt;right, res);</span><br><span class="line">    &#125;</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; preorderTraversal(<span class="type">TreeNode</span> *root) &#123;</span><br><span class="line">        // write your code here</span><br><span class="line">        vector&lt;<span class="type">int</span>&gt; <span class="literal">result</span>;</span><br><span class="line">        <span class="keyword">if</span>(root == <span class="type">NULL</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">result</span>;</span><br><span class="line">        traverse(root, <span class="literal">result</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">result</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; preorderTraversal(TreeNode *root) &#123;</span><br><span class="line">        <span class="built_in">stack</span>&lt;TreeNode *&gt; <span class="built_in">stack</span>;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res;</span><br><span class="line">        <span class="keyword">if</span>(root == <span class="literal">NULL</span>) <span class="keyword">return</span> res;</span><br><span class="line">        <span class="built_in">stack</span>.push(root);</span><br><span class="line">        <span class="keyword">while</span>(!<span class="built_in">stack</span>.empty())&#123;</span><br><span class="line">            </span><br><span class="line">            TreeNode *node = <span class="built_in">stack</span>.top();</span><br><span class="line">            <span class="built_in">stack</span>.pop();</span><br><span class="line">            res.push_back(node-&gt;val);</span><br><span class="line">            <span class="keyword">if</span>(node-&gt;right != <span class="literal">NULL</span>)</span><br><span class="line">                <span class="built_in">stack</span>.push(node-&gt;right);</span><br><span class="line">            <span class="keyword">if</span>(node-&gt;left != <span class="literal">NULL</span>)</span><br><span class="line">                <span class="built_in">stack</span>.push(node-&gt;left);</span><br><span class="line">                </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
@@ -566,6 +601,10 @@
 <p>recursion<br><figure c]]>
     </summary>
     
+      <category term="Leetcode" scheme="http://geekzph.github.io/tags/Leetcode/"/>
+    
+      <category term="算法" scheme="http://geekzph.github.io/categories/%E7%AE%97%E6%B3%95/"/>
+    
   </entry>
   
   <entry>
@@ -573,11 +612,15 @@
     <link href="http://geekzph.github.io/2017/06/19/I-O%E5%A4%8D%E7%94%A8%E4%B9%8Bselect%E3%80%81poll%E3%80%81epoll/"/>
     <id>http://geekzph.github.io/2017/06/19/I-O复用之select、poll、epoll/</id>
     <published>2017-06-19T13:39:04.000Z</published>
-    <updated>2017-06-19T13:39:04.000Z</updated>
+    <updated>2017-08-24T01:52:31.000Z</updated>
     <content type="html"></content>
     <summary type="html">
     
     </summary>
+    
+      <category term="IO复用" scheme="http://geekzph.github.io/tags/IO%E5%A4%8D%E7%94%A8/"/>
+    
+      <category term="Linux" scheme="http://geekzph.github.io/categories/Linux/"/>
     
   </entry>
   
@@ -586,7 +629,7 @@
     <link href="http://geekzph.github.io/2017/05/30/STL%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E4%B9%8Bvector/"/>
     <id>http://geekzph.github.io/2017/05/30/STL源码分析之vector/</id>
     <published>2017-05-30T06:44:04.000Z</published>
-    <updated>2017-08-21T06:45:27.000Z</updated>
+    <updated>2017-08-24T01:53:03.000Z</updated>
     <content type="html"><![CDATA[<p>概述<br>vector的数据安排及操作方式与数组非常类似。C++内置了数组的类型，在使用数组的时候，必须指定数组的长度，一旦配置了就不能改变了。vector是一个动态空间，随着元素的加入，它的内部机制会自行扩充以容纳新元素。因此，vector的运用对于内存的合理利用与运用的灵活性有很大的帮助，再也不必因为害怕空间不足而一开始就配置一个大容量数组了，vector是用多少就分配多少。</p>
 <p>vector的数据结构<br>vector采用的数据结构非常简单：线性连续空间。两个迭代器start和finish分贝指向配置得来的的连续空间目前已被使用范围，end_of_storage指向连续整段空间的末尾</p>
 <figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;class T, class <span class="type">Alloc</span> = alloc&gt;//alloc是<span class="type">STL</span>的空间配置器</span><br><span class="line">class vector</span><br><span class="line">&#123;</span><br><span class="line">	// 这里提供<span class="type">STL</span>标准的allocator接口</span><br><span class="line">  typedef simple_alloc&lt;value_type, <span class="type">Alloc</span>&gt; data_allocator;</span><br><span class="line">  <span class="keyword">iterator</span> start;               // 内存空间起始点</span><br><span class="line">  <span class="keyword">iterator</span> finish;              // 当前使用的内存空间结束点</span><br><span class="line">  <span class="keyword">iterator</span> end_of_storage;      // 实际分配内存空间的结束点</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -619,6 +662,10 @@
     <![CDATA[<p>概述<br>vector的数据安排及操作方式与数组非常类似。C++内置了数组的类型，在使用数组的时候，必须指定数组的长度，一旦配置了就不能改变了。vector是一个动态空间，随着元素的加入，它的内部机制会自行扩充以容纳新元素。因此，vector的运用对于内存的合理利用与运用]]>
     </summary>
     
+      <category term="STL" scheme="http://geekzph.github.io/tags/STL/"/>
+    
+      <category term="C++" scheme="http://geekzph.github.io/categories/C/"/>
+    
   </entry>
   
   <entry>
@@ -626,11 +673,15 @@
     <link href="http://geekzph.github.io/2017/05/30/C-%E6%9F%94%E6%80%A7%E6%95%B0%E7%BB%84/"/>
     <id>http://geekzph.github.io/2017/05/30/C-柔性数组/</id>
     <published>2017-05-30T06:43:32.000Z</published>
-    <updated>2017-05-30T06:43:32.000Z</updated>
+    <updated>2017-08-24T01:52:49.000Z</updated>
     <content type="html"></content>
     <summary type="html">
     
     </summary>
+    
+      <category term="柔性数组" scheme="http://geekzph.github.io/tags/%E6%9F%94%E6%80%A7%E6%95%B0%E7%BB%84/"/>
+    
+      <category term="C++" scheme="http://geekzph.github.io/categories/C/"/>
     
   </entry>
   
@@ -656,6 +707,45 @@
     <![CDATA[<p>做实验室输出类似如下的数据，需要导入到Gephi画图</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span clas]]>
     </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[排列组合题目的总结]]></title>
+    <link href="http://geekzph.github.io/2017/05/20/%E6%8E%92%E5%88%97%E7%BB%84%E5%90%88%E9%A2%98%E7%9B%AE%E7%9A%84%E6%80%BB%E7%BB%93/"/>
+    <id>http://geekzph.github.io/2017/05/20/排列组合题目的总结/</id>
+    <published>2017-05-20T13:10:25.000Z</published>
+    <updated>2017-08-24T01:52:44.000Z</updated>
+    <content type="html"><![CDATA[<p>最近刷了一些有关排列组合的题目，这些题目都可以用回溯法来解决。</p>
+<p>Subsets : <a href="https://leetcode.com/problems/subsets/" target="_blank" rel="external">https://leetcode.com/problems/subsets/</a></p>
+<p>找出给定数组的所有子集，给定的数组无重复数字。</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; subsets(vector&lt;<span class="keyword">int</span>&gt;&amp; nums) </span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">sort</span>(nums.begin(), nums.end());</span><br><span class="line">        vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; subs;</span><br><span class="line">        vector&lt;<span class="keyword">int</span>&gt; <span class="sub"><span class="keyword">sub</span>;</span></span><br><span class="line">        GenSubsets(nums, <span class="number">0</span>, <span class="sub"><span class="keyword">sub</span>, subs);</span></span><br><span class="line">        <span class="keyword">return</span> subs;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    void GenSubsets(vector&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> start, vector&lt;<span class="keyword">int</span>&gt; <span class="sub"><span class="keyword">sub</span>, vector&lt;vector&lt;int&gt;&gt; &amp;subs)</span><br><span class="line">    &#123;</span></span><br><span class="line">        subs.push_back(<span class="sub"><span class="keyword">sub</span>);</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = start; i &lt; nums.size(); i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="sub"><span class="keyword">sub</span>.push_back(nums[i]);</span></span><br><span class="line">            GenSubsets(nums, i + <span class="number">1</span>, <span class="sub"><span class="keyword">sub</span>, subs);</span></span><br><span class="line">            <span class="sub"><span class="keyword">sub</span>.pop_back();</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>Subsets II (contains duplicates) : <a href="https://leetcode.com/problems/subsets-ii/" target="_blank" rel="external">https://leetcode.com/problems/subsets-ii/</a></p>
+<p>找出给定数组的所有子集，给定的数组有重复数字。<br>因为数组中有重复的数字，所以先要对数组进行排序。使相同的数字在一起，以便在GenSbusets中，但遇到相同的数字可以直接跳过。避免生成了重复的子集。</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; subsetsWithDup(vector&lt;<span class="keyword">int</span>&gt;&amp; nums) &#123;</span><br><span class="line">        <span class="keyword">sort</span>(nums.begin(), nums.end());</span><br><span class="line">        vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; subs;</span><br><span class="line">        vector&lt;<span class="keyword">int</span>&gt; <span class="sub"><span class="keyword">sub</span>;</span></span><br><span class="line">        GenSubsets(nums, <span class="number">0</span>, <span class="sub"><span class="keyword">sub</span>, subs);</span></span><br><span class="line">        <span class="keyword">return</span> subs;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    void GenSubsets(vector&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> start, vector&lt;<span class="keyword">int</span>&gt; <span class="sub"><span class="keyword">sub</span>, vector&lt;vector&lt;int&gt;&gt; &amp;subs)</span><br><span class="line">    &#123;</span></span><br><span class="line">        subs.push_back(<span class="sub"><span class="keyword">sub</span>);</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = start; i &lt; nums.size(); i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(i != start &amp;&amp; nums[i - <span class="number">1</span>] == nums[i])</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            <span class="sub"><span class="keyword">sub</span>.push_back(nums[i]);</span></span><br><span class="line">            GenSubsets(nums, i + <span class="number">1</span>, <span class="sub"><span class="keyword">sub</span>, subs);</span></span><br><span class="line">            <span class="sub"><span class="keyword">sub</span>.pop_back();</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>Permutations : <a href="https://leetcode.com/problems/permutations/" target="_blank" rel="external">https://leetcode.com/problems/permutations/</a><br>找出给定数组的排列，给定的数组无重复数字。<br>生成排列的代码与生成子集的代码类似，区别就在于生成子集的时候，递归过程中的每个节点都是我们需要的结果，而生成排列只要最后的叶子节点才是我们要的结果。</p>
+<p>方法一：</p>
+<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">class <span class="type">Solution</span> &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; permute(vector&lt;<span class="type">int</span>&gt;&amp; nums) </span><br><span class="line">    &#123;</span><br><span class="line">        vector&lt;<span class="type">int</span>&gt; path;</span><br><span class="line">        vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="literal">result</span>;</span><br><span class="line">        <span class="type">GenPermute</span>(nums, path, <span class="literal">result</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">result</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="type">void</span> <span class="type">GenPermute</span>(vector&lt;<span class="type">int</span>&gt; nums, vector&lt;<span class="type">int</span>&gt; path, vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; &amp;<span class="literal">result</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(path.size() == nums.size())</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="literal">result</span>.push_back(path);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">auto</span> i : nums)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="type">auto</span> pos = find(path.begin(), path.<span class="keyword">end</span>(), i);</span><br><span class="line">            <span class="keyword">if</span>(pos == path.<span class="keyword">end</span>())</span><br><span class="line">            &#123;</span><br><span class="line">                path.push_back(i);</span><br><span class="line">                <span class="type">GenPermute</span>(nums, path, <span class="literal">result</span>);</span><br><span class="line">                path.pop_back();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>方法二：</p>
+<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">class <span class="type">Solution</span> &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt; &gt; permute(vector&lt;<span class="type">int</span>&gt; &amp;num) &#123;</span><br><span class="line">	    vector&lt;vector&lt;<span class="type">int</span>&gt; &gt; <span class="literal">result</span>;</span><br><span class="line">	    </span><br><span class="line">	    permuteRecursive(num, <span class="number">0</span>, <span class="literal">result</span>);</span><br><span class="line">	    <span class="keyword">return</span> <span class="literal">result</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    // permute num[begin..<span class="keyword">end</span>]</span><br><span class="line">    // invariant: num[<span class="number">0</span>..begin-<span class="number">1</span>] have been fixed/permuted</span><br><span class="line">	<span class="type">void</span> permuteRecursive(vector&lt;<span class="type">int</span>&gt; &amp;num, <span class="type">int</span> begin, vector&lt;vector&lt;<span class="type">int</span>&gt; &gt; &amp;<span class="literal">result</span>)	&#123;</span><br><span class="line">		<span class="keyword">if</span> (begin &gt;= num.size()) &#123;</span><br><span class="line">		    // one permutation instance</span><br><span class="line">		    <span class="literal">result</span>.push_back(num);</span><br><span class="line">		    <span class="keyword">return</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> i = begin; i &lt; num.size(); i++) &#123;</span><br><span class="line">		    swap(num[begin], num[i]);</span><br><span class="line">		    permuteRecursive(num, begin + <span class="number">1</span>, <span class="literal">result</span>);</span><br><span class="line">		    // reset</span><br><span class="line">		    swap(num[begin], num[i]);</span><br><span class="line">		&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>Permutations II (contains duplicates) : <a href="https://leetcode.com/problems/permutations-ii/" target="_blank" rel="external">https://leetcode.com/problems/permutations-ii/</a></p>
+<p>找出给定数组的排列，给定的数组有重复数字。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>Combination Sum : <a href="https://leetcode.com/problems/combination-sum/" target="_blank" rel="external">https://leetcode.com/problems/combination-sum/</a></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Solution &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; combinationSum(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; candidates, <span class="keyword">int</span> target) &#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; res;</span><br><span class="line">        sort(candidates.begin(), candidates.end());</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; combination;</span><br><span class="line">        genCombinations(candidates, target, res, combination, <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">genCombinations</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;candidates, <span class="keyword">int</span> target, <span class="built_in">vector</span>&lt;<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &gt; &amp;res, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;combination, <span class="keyword">int</span> begin)</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!target)</span><br><span class="line">        &#123;</span><br><span class="line">            res.push_back(combination);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = begin; i != candidates.size() &amp;&amp; target &gt;= candidates[i]; ++i)</span><br><span class="line">        &#123;</span><br><span class="line">            combination.push_back(candidates[i]);</span><br><span class="line">            genCombinations(candidates, target - candidates[i], res, combination, i);</span><br><span class="line">            combination.pop_back();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>Combination Sum II (can’t reuse same element) : <a href="https://leetcode.com/problems/combination-sum-ii/" target="_blank" rel="external">https://leetcode.com/problems/combination-sum-ii/</a></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Solution &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; combinationSum2(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; candidates, <span class="keyword">int</span> target) &#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; res;</span><br><span class="line">        sort(candidates.begin(), candidates.end());</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; combination;</span><br><span class="line">        genCombination2(candidates, target, res, combination, <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">genCombination2</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;candidates, <span class="keyword">int</span> target, <span class="built_in">vector</span>&lt;<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &gt; &amp;res, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;combination, <span class="keyword">int</span> begin)</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!target)</span><br><span class="line">        &#123;</span><br><span class="line">            res.push_back(combination);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = begin; i != candidates.size() &amp;&amp; target &gt;= candidates[i]; ++i)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(i == begin || candidates[i] != candidates[i - <span class="number">1</span>])</span><br><span class="line">            &#123;</span><br><span class="line">                combination.push_back(candidates[i]);</span><br><span class="line">                genCombination2(candidates, target - candidates[i], res, combination, i + <span class="number">1</span>);</span><br><span class="line">                combination.pop_back();</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>Palindrome Partitioning : <a href="https://leetcode.com/problems/palindrome-partitioning/" target="_blank" rel="external">https://leetcode.com/problems/palindrome-partitioning/</a></p>
+<pre><code>
+</code></pre>]]></content>
+    <summary type="html">
+    <![CDATA[<p>最近刷了一些有关排列组合的题目，这些题目都可以用回溯法来解决。</p>
+<p>Subsets : <a href="https://leetcode.com/problems/subsets/" target="_blank" rel="external">https://]]>
+    </summary>
+    
+      <category term="Leetcode" scheme="http://geekzph.github.io/tags/Leetcode/"/>
+    
+      <category term="算法" scheme="http://geekzph.github.io/categories/%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   
